@@ -68,8 +68,8 @@ function index() {
         <hr />
         <div className={styles.bottom}>
           <div className={styles.left}>
-            <h2>fiverr</h2>
-            <span>© Fiverr International Ltd. 2023</span>
+            <h2>Freelancer</h2>
+            <span>©Freelancer International Ltd. 2023</span>
           </div>
           <div className={styles.right}>
             <div className={styles.social}>
