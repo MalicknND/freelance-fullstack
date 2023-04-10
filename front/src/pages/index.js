@@ -1,5 +1,6 @@
 import Title from '@/components/UI/Title';
 import Featured from '@/components/UI/Featured';
+import Caroussel from '@/components/UI/Caroussel';
 
 import Partner from '@/components/UI/Partner';
 import Footer from '@/components/partials/Footer';
@@ -12,6 +13,7 @@ export default function Home() {
       <Featured />
       <Partner />
       {/* <Title title="Homepage" Level="h1" /> */}
+      <Caroussel />
 
       <Footer />
     </>

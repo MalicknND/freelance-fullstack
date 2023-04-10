@@ -1,0 +1,44 @@
+.App {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0px;
+}
+
+.seperator {
+  width: 100%;
+}
+
+.controls_wrapper {
+  width: 100%;
+}
+
+.carousel_wrapper {
+  width: 100%;
+}
+
+.rec-carousel-item:focus {
+  outline: none;
+  box-shadow: inset 0 0 1px 0px rgb(9, 159, 54);
+}
+
+// button.rec-dot,
+// button.rec-arrow-left {
+//   background-color: #e2ad2b !important;
+//   box-shadow: 0 0 1px 3px #e2ad2b;
+// }
+
+// button.rec-dot:hover,
+// button.rec-dot:active,
+// button.rec-dot:focus,
+// button.rec-arrow:hover,
+// button.rec-arrow:active,
+// button.rec-arrow:focus {
+//   box-shadow: 0 0 1px 3px #e2ad2b !important;
+// }
+// button.rec-arrow:hover {
+//   background-color: #e2ad2b !important;
+// }
