@@ -21,7 +21,7 @@ const index = () => {
         >
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            src="https://img.freepik.com/vecteurs-libre/illustration-concept-experts_114360-451.jpg?size=626&ext=jpg&uid=R15765290&ga=GA1.2.547947235.1680361633&semt=sph"
             sx={{ width: 56, height: 56 }}
           />
           <p style={{ display: 'flex', flexDirection: 'column' }}>
@@ -55,7 +55,7 @@ const index = () => {
         >
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            src="https://img.freepik.com/vecteurs-libre/rencontres-ligne-homme-heureux-via-ordinateur-portable_74855-7495.jpg?size=626&ext=jpg&uid=R15765290&ga=GA1.2.547947235.1680361633&semt=sph"
             sx={{ width: 56, height: 56 }}
           />
           <p style={{ display: 'flex', flexDirection: 'column' }}>
