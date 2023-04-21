@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from '../../../../public/img/back.jpeg';
+import Image from '../../../../public/img/layout.jpg';
 import styles from './index.module.scss';
 
 const Index = ({ children }) => {

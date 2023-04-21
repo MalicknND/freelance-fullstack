@@ -40,7 +40,12 @@ const index = () => {
             className="btn__primary"
             handleClick={() => router.push('/auth/login')}
           />
-          <Button type="submit" title="S'inscrire" className="btn__primary" />
+          <Button
+            type="submit"
+            title="S'inscrire"
+            className="btn__primary"
+            handleClick={() => router.push('/auth/accounts')}
+          />
         </div>
       </div>
       {active && (

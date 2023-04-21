@@ -40,7 +40,7 @@ const Index = () => {
 
       <p>
         Vous n'avez pas de compte ?{' '}
-        <Link href="/auth/register">Inscrivez-vous ?</Link>
+        <Link href="/auth/accounts">Inscrivez-vous ?</Link>
       </p>
     </>
   );
