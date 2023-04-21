@@ -4,11 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import styles from './index.module.scss';
 
 export default function index({ item }) {
   return (
-    <Card sx={{ minWidth: 405 }}>
+    <Card sx={{ minWidth: 305 }}>
       <CardActionArea>
         <CardMedia
           component="img"
