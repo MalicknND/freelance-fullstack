@@ -65,9 +65,7 @@ const index = () => {
           <span
             style={{
               display: 'flex',
-              marginLeft: '13px',
-
-              justifyContent: 'flex-end',
+              marginLeft: '25px',
             }}
           >
             {' '}
