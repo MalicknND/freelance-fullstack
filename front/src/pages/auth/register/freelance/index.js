@@ -35,7 +35,7 @@ const Index = () => {
       <form onSubmit={(e) => submitRegister(e)}>
         <div className={styles.username}>
           <Input
-            label="Prénom"
+            label=""
             type="text"
             name="firstName"
             placeholder="prénom"
@@ -44,7 +44,7 @@ const Index = () => {
             value={userForm.firstName}
           />
           <Input
-            label="Nom"
+            label=""
             type="text"
             name="lastName"
             placeholder="nom"
@@ -55,19 +55,19 @@ const Index = () => {
         </div>
         <div className={styles.username}>
           <Input
-            label="Téléphone"
+            label=""
             type="number"
             name="phone"
-            placeholder="+3300000000"
+            placeholder="Téléphone"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.phone}
           />
           <Input
-            label="Code Postal"
+            label=" "
             type="number"
             name="zipCode"
-            placeholder="75018"
+            placeholder="Code postal"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.zipCode}
@@ -75,7 +75,7 @@ const Index = () => {
         </div>
         <div className={styles.username}>
           <Input
-            label="Rue"
+            label=""
             type="text"
             name="street"
             placeholder="rue"
@@ -84,7 +84,7 @@ const Index = () => {
             value={userForm.address.street}
           />
           <Input
-            label="ville"
+            label=""
             type="text"
             name="city"
             placeholder="Paris"
@@ -95,7 +95,7 @@ const Index = () => {
         </div>
 
         <Input
-          label="Email"
+          label=""
           type="email"
           name="email"
           placeholder="veuillez saisir votre email"
@@ -104,7 +104,7 @@ const Index = () => {
           value={userForm.email}
         />
         <Input
-          label="Password"
+          label=""
           type="password"
           name="password"
           placeholder="veuillez saisir votre mot de passe"
@@ -114,7 +114,7 @@ const Index = () => {
         />
         <div className={styles.username}>
           <Input
-            label="Tarif journalier"
+            label="Tarif "
             type="number"
             name="rate"
             placeholder="0"
@@ -132,12 +132,11 @@ const Index = () => {
             value={userForm.yearOfExperience}
           />
         </div>
-        <Button type="submit" title="Se connecter" className="btn__secondary" />
+        <Button type="submit" title="S'inscrire" className="btn__secondary" />
       </form>
 
       <p>
-        Vous avez déjà un compte ?{' '}
-        <Link href="/auth/login">Connectez-vous ?</Link>
+        Déjà membre ? <Link href="/auth/login">Connectez-vous ?</Link>
       </p>
     </>
   );

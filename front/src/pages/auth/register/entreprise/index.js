@@ -21,6 +21,21 @@ const Index = () => {
       street: '',
     },
   });
+  const [freelanceForm, setFreelanceForm] = useState({
+    rate: 0,
+    yearOfExperience: 0,
+  });
+
+  const [companyForm, setCompanyForm] = useState({
+    name: '',
+    status: '',
+    siret: '',
+    address: {
+      city: '',
+      zipCode: 0,
+      street: '',
+    },
+  });
 
   const handleChange = (e) => {
     setUserForm({
@@ -35,21 +50,19 @@ const Index = () => {
       <form onSubmit={(e) => submitRegister(e)}>
         <div className={styles.username}>
           <Input
-            label="Prénom"
+            label=""
             type="text"
             name="firstName"
-            className={styles.first}
             placeholder="prénom"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.firstName}
           />
           <Input
-            label="Nom"
+            label=""
             type="text"
             name="lastName"
-            className={styles.first}
-            placeholder="nom"
+            placeholder="Nom"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.lastName}
@@ -57,21 +70,19 @@ const Index = () => {
         </div>
         <div className={styles.username}>
           <Input
-            label="Téléphone"
+            label=""
             type="number"
             name="phone"
-            className={styles.first}
-            placeholder="+3300000000"
+            placeholder="Téléphone"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.phone}
           />
           <Input
-            label="Code Postal"
+            label=""
             type="number"
             name="zipCode"
-            className={styles.first}
-            placeholder="75018"
+            placeholder="Code postal"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.zipCode}
@@ -79,20 +90,18 @@ const Index = () => {
         </div>
         <div className={styles.username}>
           <Input
-            label="Rue"
+            label=""
             type="text"
             name="street"
-            className={styles.first}
-            placeholder="rue"
+            placeholder="Rue"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.address.street}
           />
           <Input
-            label="ville"
+            label=""
             type="text"
             name="city"
-            className={styles.first}
             placeholder="Paris"
             required={true}
             onChange={(e) => handleChange(e)}
@@ -101,7 +110,7 @@ const Index = () => {
         </div>
 
         <Input
-          label="Email"
+          label=""
           type="email"
           name="email"
           placeholder="veuillez saisir votre email"
@@ -110,7 +119,7 @@ const Index = () => {
           value={userForm.email}
         />
         <Input
-          label="Password"
+          label=""
           type="password"
           name="password"
           placeholder="veuillez saisir votre mot de passe"
@@ -120,21 +129,40 @@ const Index = () => {
         />
         <div className={styles.username}>
           <Input
-            label="Téléphone"
-            type="number"
-            name="phone"
-            className={styles.first}
-            placeholder="+3300000000"
+            label=""
+            type="text"
+            name="name"
+            placeholder="Entreprise"
             required={true}
             onChange={(e) => handleChange(e)}
-            value={userForm.phone}
+            value={userForm.name}
+          />
+
+          <Input
+            label=""
+            type="text"
+            name="status"
+            placeholder="SARL, SAS, EURL, ..."
+            required={true}
+            onChange={(e) => handleChange(e)}
+            value={userForm.status}
+          />
+        </div>
+        <div className={styles.username}>
+          <Input
+            label=""
+            type="number"
+            name="siret"
+            placeholder="Siret"
+            required={true}
+            onChange={(e) => handleChange(e)}
+            value={userForm.siret}
           />
           <Input
-            label="Code Postal"
+            label=""
             type="number"
             name="zipCode"
-            className={styles.first}
-            placeholder="75018"
+            placeholder="Code postal"
             required={true}
             onChange={(e) => handleChange(e)}
             value={userForm.zipCode}
@@ -142,54 +170,29 @@ const Index = () => {
         </div>
         <div className={styles.username}>
           <Input
-            label="Téléphone"
-            type="number"
-            name="phone"
-            className={styles.first}
-            placeholder="+3300000000"
+            label=""
+            type="text"
+            name="street"
+            placeholder="Rue"
             required={true}
             onChange={(e) => handleChange(e)}
-            value={userForm.phone}
+            value={userForm.address.street}
           />
           <Input
-            label="Code Postal"
-            type="number"
-            name="zipCode"
-            className={styles.first}
-            placeholder="75018"
+            label=""
+            type="text"
+            name="city"
+            placeholder="Paris"
             required={true}
             onChange={(e) => handleChange(e)}
-            value={userForm.zipCode}
-          />
-        </div>
-        <div className={styles.username}>
-          <Input
-            label="Téléphone"
-            type="number"
-            name="phone"
-            className={styles.first}
-            placeholder="+3300000000"
-            required={true}
-            onChange={(e) => handleChange(e)}
-            value={userForm.phone}
-          />
-          <Input
-            label="Code Postal"
-            type="number"
-            name="zipCode"
-            className={styles.first}
-            placeholder="75018"
-            required={true}
-            onChange={(e) => handleChange(e)}
-            value={userForm.zipCode}
+            value={userForm.address.city}
           />
         </div>
         <Button type="submit" title="S'inscrire" className="btn__secondary" />
       </form>
 
       <p>
-        Vous avez déjà un compte ?{' '}
-        <Link href="/auth/login">Connectez-vous ?</Link>
+        Déjà membre ? <Link href="/auth/login">Connectez-vous ?</Link>
       </p>
     </>
   );

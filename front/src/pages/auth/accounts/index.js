@@ -18,7 +18,7 @@ const Index = () => {
           />
           <p>
             <span>Entreprise</span>
-            <span>je cree mon profil</span>
+            <span>je recherche des freelances</span>
           </p>
         </div>
       </Link>
@@ -31,7 +31,7 @@ const Index = () => {
           />
           <p>
             <span>Freelance</span>
-            <span>Je cree mon profil</span>
+            <span>Je crée mon profil</span>
           </p>
         </div>
       </Link>

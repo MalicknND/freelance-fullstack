@@ -39,8 +39,7 @@ const Index = () => {
       </form>
 
       <p>
-        Vous n'avez pas de compte ?{' '}
-        <Link href="/auth/accounts">Inscrivez-vous ?</Link>
+        Pas de compte ? <Link href="/auth/accounts">Inscrivez-vous ?</Link>
       </p>
     </>
   );
