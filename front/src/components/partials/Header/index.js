@@ -36,7 +36,7 @@ const index = () => {
           <span>English</span>
           <Button
             type="submit"
-            title="Se connecter"
+            title="Connexion"
             className="btn__primary"
             handleClick={() => router.push('/auth/login')}
           />

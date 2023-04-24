@@ -1,11 +1,12 @@
 .wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin: 10px;
   label {
     display: block;
-    padding: 5px;
+    padding: 3px;
   }
   input {
-    width: 95%;
+    width: 100%;
     padding: 8px 12px;
     font-size: 15px;
     font-weight: 400;
@@ -14,10 +15,5 @@
     border: 1px solid #b8b8b5;
     border-radius: 10px;
     transition: border-color 0.5s;
-    &__primary {
-      width: 45px;
-      padding: 8px 12px;
-      font-size: 15px;
-    }
   }
 }

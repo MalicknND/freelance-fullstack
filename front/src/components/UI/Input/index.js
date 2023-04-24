@@ -8,7 +8,6 @@ const Index = ({
   isRequired,
   placeholder,
   onChange,
-  className,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -20,7 +19,6 @@ const Index = ({
         placeholder={placeholder}
         type={type}
         onChange={onChange}
-        className={`${styles.input} ${styles[className]}`}
       />
     </div>
   );

@@ -1,0 +1,29 @@
+.index {
+  .box {
+    display: flex;
+    gap: 35px;
+    margin-top: 2vh;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 450px;
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    &:hover {
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+
+      span:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+}
