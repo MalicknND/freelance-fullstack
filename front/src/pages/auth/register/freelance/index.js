@@ -1,33 +1,107 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './index.module.scss';
-
+import useFetch from '@/hooks/useFetch';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Title from '@/components/UI/Title';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
-import BtnStep from '@/components/UI/BtnStep';
 
 const Index = () => {
+  const router = useRouter();
+  // cette variable permet de stocker le token de l'utilisateur
+  const [token, setToken] = useState(null);
   const [userForm, setUserForm] = useState({
     firstName: '',
     lastName: '',
     password: '',
     email: '',
     phone: '',
-    userType: '',
+    userType: 'FREELANCE',
     address: {
       city: '',
-      zipCode: 0,
+      zipCode: null,
       street: '',
     },
   });
+  const [freelanceForm, setFreelanceForm] = useState({
+    rate: 0,
+    yearOfExperience: 0,
+  });
 
+  // useFetch est un custom hook qui permet de faire des requêtes http et de gérer les erreurs, le loading et les données
+  const { fetchData, data, error, loading } = useFetch({
+    url: '/auth/register',
+    method: 'POST',
+    body: userForm,
+    token: null,
+  });
+
+  // pour fetcher les données du freelance
+  const {
+    data: freelance,
+    error: freelanceError,
+    loading: freelanceLoading,
+    fetchData: fetchDataFreelance,
+  } = useFetch({
+    url: '/auth/freelance',
+    method: 'POST',
+    body: freelanceForm,
+    token: token,
+  });
+
+  // cette fonction permet de mettre à jour le state userForm et de gérer les changements dans les inputs
   const handleChange = (e) => {
     setUserForm({
       ...userForm,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name === 'zipCode') {
+      userForm.address.zipCode = e.target.value;
+    }
+    if (e.target.name === 'city') {
+      userForm.address.city = e.target.value;
+    }
+    if (e.target.name === 'street') {
+      userForm.address.street = e.target.value;
+    }
   };
+
+  //cette fonction permet de mettre à jour le state freelanceForm et de gérer les changements dans les inputs
+  const handleChangeFreelance = (e) => {
+    setFreelanceForm({
+      ...freelanceForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // cette fonction permet de soumettre le formulaire d'inscription et de gérer les erreurs et e.preventDefault() permet de ne pas recharger la page
+  const submitRegister = (e) => {
+    e.preventDefault();
+    fetchData();
+    if (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(data);
+    if (data.success == true) {
+      if (data.token) {
+        console.log('coucou');
+        console.log(data);
+        setToken(data.token);
+        localStorage.setItem('token', data.token);
+      }
+    }
+  }, [data]);
+
+  // permet de verifier si le token est présent dans le localstorage et de faire la requête pour récupérer les données du freelance
+  useEffect(() => {
+    if (token != null) {
+      fetchDataFreelance();
+    }
+  }, [token]);
 
   return (
     <>
@@ -119,7 +193,7 @@ const Index = () => {
             name="rate"
             placeholder="0"
             required={true}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeFreelance(e)}
             value={userForm.rate}
           />
           <Input
@@ -128,7 +202,7 @@ const Index = () => {
             name="yearOfExperience"
             placeholder="0"
             required={true}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeFreelance(e)}
             value={userForm.yearOfExperience}
           />
         </div>
