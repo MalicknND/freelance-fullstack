@@ -1,19 +1,17 @@
 import { useState } from 'react';
 
-const useFetch = ({ url, method, body, token }) => {
+const useFetch = ({ url, method, body }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
+    console.log(url);
     setLoading(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
         headers: {
           'Content-Type': 'Application/json',
-          ...(token && {
-            authorization: token,
-          }),
         },
         method: method,
         ...(body && {
@@ -21,17 +19,11 @@ const useFetch = ({ url, method, body, token }) => {
         }),
       });
       const dataJson = await response.json();
-      if (!dataJson.success) {
-        throw new Error(dataJson.message);
-      }
       setData(dataJson);
     } catch (error) {
-      console.log(error);
       setError(error);
     } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     }
   };
 
