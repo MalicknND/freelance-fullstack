@@ -1,7 +1,6 @@
 import React from 'react';
 import Title from '@/components/UI/Title';
 import { Avatar } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
 import styles from './index.module.scss';
 

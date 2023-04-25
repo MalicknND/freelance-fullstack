@@ -46,7 +46,7 @@ const Index = () => {
 
   return (
     <>
-      <Title title="Inscription" Level="h1" />
+      <Title title="Entreprise" Level="h1" />
       <form onSubmit={(e) => submitRegister(e)}>
         <div className={styles.username}>
           <Input

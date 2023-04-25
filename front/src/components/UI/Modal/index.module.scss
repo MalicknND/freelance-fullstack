@@ -1,0 +1,48 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #0000005c;
+    top: 0;
+    z-index: 999998;
+}
+
+.modal {
+    padding: 20px 10px;
+    position: fixed;
+    width: 450px;
+    background: white;
+    z-index: 999999;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    .header {
+        padding: 10px 0px;
+        border-bottom: 1px solid grey;
+        position: relative;
+        h2 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+        button {
+            position: absolute;
+            right: 2%;
+            top: 2%;
+            cursor: pointer;
+            &:hover {
+                svg {
+                    fill: grey;
+                    transition: 0.3s all;
+                }
+            }
+            svg {
+                width: 10px;
+                transition: 0.3s all;
+            }
+        }
+    }
+    .content {
+        padding: 10px 0px;
+    }
+}

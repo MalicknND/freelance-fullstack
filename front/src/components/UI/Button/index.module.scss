@@ -30,8 +30,9 @@
     background: white;
     border: 1px solid black;
     &:hover {
-      background: black;
+      background: #5ae4a8;
       color: white;
+      border: none;
     }
   }
 }
