@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from './index.module.scss';
 import Button from '@/components/UI/Button/';
 import { useRouter } from 'next/router';
+import UserContext from '@/context/UserContext';
 
 const index = () => {
   const [active, setActive] = useState(false);
@@ -18,6 +19,7 @@ const index = () => {
   }, []);
 
   const router = useRouter();
+  const { user, isLogged, logout } = useContext(UserContext);
 
   return (
     <div
@@ -27,25 +29,41 @@ const index = () => {
     >
       <div className={styles.container}>
         <div className={styles.logo}>
-          <span className={styles.text}>Freelancer</span>
+          <span onClick={() => router.push('/')} className={styles.text}>
+            Freelancer
+          </span>
           <span className={styles.dot}>.</span>
         </div>
         <div className={styles.links}>
           <span>Qui sommes-nous ?</span>
           <span>Explore</span>
           <span>English</span>
-          <Button
-            type="submit"
-            title="Connexion"
-            className="btn__primary"
-            handleClick={() => router.push('/auth/login')}
-          />
-          <Button
-            type="submit"
-            title="S'inscrire"
-            className="btn__primary"
-            handleClick={() => router.push('/auth/accounts')}
-          />
+          {isLogged ? (
+            <>
+              <span> {user && user.firstName}</span>
+              <Button
+                type="submit"
+                title="Deconnexion"
+                className="btn__primary"
+                handleClick={() => logout()}
+              />
+            </>
+          ) : (
+            <>
+              <Button
+                type="submit"
+                title="Connexion"
+                className="btn__primary"
+                handleClick={() => router.push('/auth/login')}
+              />
+              <Button
+                type="submit"
+                title="S'inscrire"
+                className="btn__primary"
+                handleClick={() => router.push('/auth/accounts')}
+              />
+            </>
+          )}
         </div>
       </div>
       {active && (
