@@ -58,7 +58,7 @@ const Index = () => {
           street: user.user.address.street,
         },
       });
-      router.push('/account/profil');
+      router.push('/');
     }
   }, [token, user]);
 
