@@ -30,9 +30,15 @@
     background: white;
     border: 1px solid black;
     &:hover {
-      background: #5ae4a8;
+      background: #013914;
       color: white;
       border: none;
     }
+  }
+  &__warning {
+    background: red;
+    border: 1px solid white;
+    color: white;
+    width: 20%;
   }
 }

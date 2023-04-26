@@ -40,7 +40,13 @@ const index = () => {
           <span>English</span>
           {isLogged ? (
             <>
-              <span> {user && user.firstName}</span>
+              <span
+                className={styles.profil}
+                onClick={() => router.push('/account/profil')}
+              >
+                {' '}
+                {user && user.firstName}
+              </span>
               <Button
                 type="submit"
                 title="Deconnexion"
