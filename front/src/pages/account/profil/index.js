@@ -1,56 +1,206 @@
-import React from 'react';
-import styles from './index.module.scss';
-import Title from '@/components/UI/Title';
+import { useEffect, useState, useContext } from 'react';
+import { useRouter } from 'next/router';
+import UserContext from '@/context/UserContext';
+import useFetch from '@/hooks/useFetch';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
-import Sidebar from '@/components/UI/Sidebar';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import Footer from '@/components/partials/Footer';
+import Modal from '@/components/UI/Modal';
+import Loading from '@/components/UI/Loading';
+import Title from '@/components/UI/Title';
 
-export default function index() {
+import styles from './index.module.scss';
+
+const Index = () => {
+  const router = useRouter();
+
+  const { isLogged, user, updateUser } = useContext(UserContext);
+
+  const [token, setToken] = useState();
+
+  const [userForm, setUserForm] = useState();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const {
+    data: dataUpdate,
+    error: errorUpdate,
+    loading: loadingUpdate,
+    fetchData: fetchDataUpdate,
+    error,
+  } = useFetch({ url: '/user', method: 'PUT', body: userForm, token: token });
+
+  useEffect(() => {
+    setUserForm(user);
+  }, [user]);
+
+  useEffect(() => {
+    if (dataUpdate.success) {
+      setIsOpen(false);
+      updateUser(dataUpdate.user);
+    }
+  }, [dataUpdate]);
+
+  // cette fonction permet de mettre à jour le state userForm et de gérer les changements dans les inputs
+  const handleChange = (e) => {
+    setUserForm({
+      ...userForm,
+      [e.target.name]: e.target.value,
+    });
+    if (e.target.name === 'zipCode') {
+      userForm.address.zipCode = e.target.value;
+    }
+    if (e.target.name === 'city') {
+      userForm.address.city = e.target.value;
+    }
+    if (e.target.name === 'street') {
+      userForm.address.street = e.target.value;
+    }
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    console.log(token);
+    setToken(token);
+    fetchDataUpdate();
+    if (dataUpdate.success) {
+      setIsOpen(false);
+    }
+  };
+  console.log(token);
+  // console.log(userForm);
+
   return (
     <>
-      <div className={styles.settings}>
-        <div className={styles.settingsWrapper}>
-          <div className={styles.settingsTitle}>
-            <Title title="Modifier" Level="h1" />
-            {/* <span className={styles.settingsTitleDelete}>Delete Account</span> */}
-            <Button type="submit" title="Supprimer" className="btn__warning" />
-          </div>
-          <form className={styles.settingsForm}>
-            <label>Profile Picture</label>
-            <div className={styles.settingsPP}>
-              <img
-                src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-              />
-              <label htmlFor="fileInput">
-                <AccountBoxIcon className={styles.settingsPPIcon} />
-              </label>
-              <input
-                id="fileInput"
-                type="file"
-                style={{ display: 'none' }}
-                className="settingsPPInput"
-              />
-            </div>
+      {isLogged ? (
+        <>
+          {isOpen && (
+            <Modal
+              title="Modifier mon profil"
+              closeModal={() => setIsOpen(false)}
+            >
+              <br />
+              <form
+                onSubmit={(e) => {
+                  submitForm(e);
+                }}
+              >
+                <Input
+                  label="Prénom"
+                  type="text"
+                  name="firstName"
+                  value={userForm.firstName}
+                  isRequired={true}
+                  placeholder="entrer votre prénom"
+                  onChange={(e) => handleChange(e)}
+                />
+                <Input
+                  label="Nom"
+                  type="text"
+                  name="lastName"
+                  value={userForm.lastName}
+                  isRequired={true}
+                  placeholder="entrer votre nom"
+                  onChange={(e) => handleChange(e)}
+                />
+                <Input
+                  label="Email"
+                  type="text"
+                  name="email"
+                  value={userForm.email}
+                  isRequired={true}
+                  placeholder="entrer votre email"
+                  onChange={(e) => handleChange(e)}
+                />
+                <Input
+                  label="Numéro de portable"
+                  type="tel"
+                  name="phone"
+                  value={userForm.phone}
+                  isRequired={true}
+                  placeholder="entrer votre numéro de portable"
+                  onChange={(e) => handleChange(e)}
+                />
+                <Input
+                  label="Addresse"
+                  type="adress"
+                  name="street"
+                  placeholder="entrer votre rue"
+                  isRequired={true}
+                  onChange={(e) => handleChange(e)}
+                  value={userForm.address.street}
+                />
+                <Input
+                  label="Code postal"
+                  type="zipcode"
+                  name="zipCode"
+                  maxLength="5"
+                  placeholder="entrer votre code postal"
+                  isRequired={true}
+                  onChange={(e) => handleChange(e)}
+                  value={userForm.address.zipCode}
+                />
+                <Input
+                  label="Ville"
+                  type="city"
+                  name="city"
+                  placeholder="entrer votre ville"
+                  isRequired={true}
+                  onChange={(e) => handleChange(e)}
+                  value={userForm.address.city}
+                />
+                <Button
+                  type="submit"
+                  title="modifier"
+                  className="btn__primary"
+                />
+              </form>
+            </Modal>
+          )}
 
-            <label>Username</label>
-            <input type="text" placeholder="Safak" name="name" />
-            <label>Email</label>
-            <input type="email" placeholder="safak@gmail.com" name="email" />
-            <label>Password</label>
-            <input type="password" placeholder="Password" name="password" />
-            <Button
-              type="submit"
-              title="Enregistrer les modifications"
-              className="btn__secondary"
-            />
-          </form>
-        </div>
-        <Sidebar />
-      </div>
-      <Footer />
+          <div className={styles.formulaire}>
+            <div className={styles.title}>
+              <Title title="Mon profil" Level="h1" />
+            </div>
+            {user && (
+              <>
+                <p>Le type de votre compte : {user.userType}</p>
+                <br />
+                <p>Prénom : {user.firstName}</p>
+                <br />
+                <p>Nom : {user.lastName}</p>
+                <br />
+                <p>Email : {user.email}</p>
+                <br />
+                <p>Numéro de portable : {user.phone}</p>
+                <br />
+                <p>Adresse : {user.address.street}</p>
+                <br />
+                <p>Code postal : {user.address.zipCode}</p>
+                <br />
+                <p>Ville : {user.address.city}</p>
+                <br />
+              </>
+            )}
+            <div className={styles.wrapper}>
+              <div className={styles.buttons_wrapper}>
+                <div className={styles.button_first}>
+                  <Button
+                    title="Modifier mon profil"
+                    className="btn__primary"
+                    type="button"
+                    handleClick={() => {
+                      setIsOpen(true);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
-}
+};
+
+export default Index;

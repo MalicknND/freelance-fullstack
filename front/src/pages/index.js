@@ -3,9 +3,10 @@ import Title from '@/components/UI/Title';
 import Freelances from '@/components/UI/Freelances';
 import Featured from '@/components/UI/Featured';
 import Caroussel from '@/components/UI/Caroussel';
-
+import About from '@/components/UI/About';
 import Partner from '@/components/UI/Partner';
 import Footer from '@/components/partials/Footer';
+import Card from '@/components/UI/Card';
 
 export default function Home() {
   const [data, setData] = React.useState([]);
@@ -28,6 +29,8 @@ export default function Home() {
     <>
       <Featured />
       <Partner />
+      <Card />
+      <About />
       <div style={{ display: 'flex', justifyContent: 'center', gap: '25px' }}>
         {data.map((freelance) => (
           <Freelances freelance={freelance} />

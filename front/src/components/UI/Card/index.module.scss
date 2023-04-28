@@ -1,0 +1,40 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+.card {
+  width: 18rem;
+  border: 1px solid $secondary-color;
+  margin: 0 auto;
+  border-radius: 20px;
+
+  .card_img_top {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .card_body {
+    padding: 1rem;
+
+    .card_title {
+      font-size: 1.25rem;
+      color: $primary-color;
+    }
+
+    .card_text {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .btn {
+      display: block;
+      margin-top: 1rem;
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
