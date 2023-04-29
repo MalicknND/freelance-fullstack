@@ -12,7 +12,7 @@ const useFetch = ({ url, method, body, token }) => {
         headers: {
           'Content-Type': 'Application/json',
           ...(token && {
-            authorization: token,
+            Authorization: token,
           }),
         },
         method: method,

@@ -36,6 +36,17 @@
       border: none;
     }
   }
+  &__tertiary {
+    width: 25%;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    &:hover {
+      background: #013914;
+      color: white;
+      border: none;
+    }
+  }
   &__warning {
     background: red;
     border: 1px solid white;

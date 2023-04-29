@@ -152,48 +152,98 @@ const Index = () => {
                 <Button
                   type="submit"
                   title="modifier"
-                  className="btn__primary"
+                  className="btn__secondary"
                 />
               </form>
             </Modal>
           )}
 
           <div className={styles.formulaire}>
-            <div className={styles.title}>
-              <Title title="Mon profil" Level="h1" />
-            </div>
+            <div className={styles.title}></div>
             {user && (
-              <>
-                <p>Le type de votre compte : {user.userType}</p>
-                <br />
-                <p>Prénom : {user.firstName}</p>
-                <br />
-                <p>Nom : {user.lastName}</p>
-                <br />
-                <p>Email : {user.email}</p>
-                <br />
-                <p>Numéro de portable : {user.phone}</p>
-                <br />
-                <p>Adresse : {user.address.street}</p>
-                <br />
-                <p>Code postal : {user.address.zipCode}</p>
-                <br />
-                <p>Ville : {user.address.city}</p>
-                <br />
-              </>
+              <div className={styles.profile_container}>
+                <div className={styles.profile_card}>
+                  <div className={styles.profile_card_header}>
+                    <Title title="Mon profil" Level="h1" />
+                    <Button
+                      title="Modifier"
+                      className="btn__tertiary"
+                      type="button"
+                      handleClick={() => {
+                        setIsOpen(true);
+                      }}
+                    />
+                  </div>
+                  <div className={styles.profile_card_body}>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Type de compte :
+                      </p>
+                      <p className={styles.profile_info_value}>
+                        {user.userType}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Prénom :</p>
+                      <p className={styles.profile_info_value}>
+                        {user.firstName}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Nom :</p>
+                      <p className={styles.profile_info_value}>
+                        {user.lastName}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Email :</p>
+                      <p className={styles.profile_info_value}>{user.email}</p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Numéro de portable :
+                      </p>
+                      <p className={styles.profile_info_value}>{user.phone}</p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Adresse :</p>
+                      <p className={styles.profile_info_value}>
+                        {user.address.street}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Code postal :</p>
+                      <p className={styles.profile_info_value}>
+                        {user.address.zipCode}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Ville :</p>
+                      <p className={styles.profile_info_value}>
+                        {user.address.city}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Taux Journalier :
+                      </p>
+                      <p className={styles.profile_info_value}>{user.rate}</p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Année d'éxpérience :
+                      </p>
+                      <p className={styles.profile_info_value}>
+                        {user.yearOfExperience}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
             <div className={styles.wrapper}>
               <div className={styles.buttons_wrapper}>
-                <div className={styles.button_first}>
-                  <Button
-                    title="Modifier mon profil"
-                    className="btn__primary"
-                    type="button"
-                    handleClick={() => {
-                      setIsOpen(true);
-                    }}
-                  />
-                </div>
+                <div className={styles.button_first}></div>
               </div>
             </div>
           </div>

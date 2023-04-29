@@ -33,16 +33,22 @@ export default function Home() {
       <div
         style={{
           display: 'flex',
-          flexWrap: 'nowrap',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '80%',
-          gap: '25px',
+          justifyContent: 'center',
         }}
       >
-        {data.map((freelance) => (
-          <Card freelance={freelance} />
-        ))}
+        <div
+          style={{
+            width: '80%',
+            display: 'flex',
+            gap: '40px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          {data.map((freelance) => (
+            <Card freelance={freelance} />
+          ))}
+        </div>
       </div>
       {/* <Card /> */}
       {/* <Caroussel /> */}
