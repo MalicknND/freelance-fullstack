@@ -7,7 +7,6 @@
   font-size: 18px;
   font-weight: 400;
   color: black;
-  border-radius: 10px;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -20,6 +19,7 @@
   &__primary {
     border: 1px solid white;
     color: white;
+    border-radius: 10px;
     &:hover {
       background: white;
       border: 1px solid white;
@@ -29,6 +29,7 @@
   &__secondary {
     background: white;
     border: 1px solid black;
+    border-radius: 10px;
     &:hover {
       background: #013914;
       color: white;
@@ -40,5 +41,19 @@
     border: 1px solid white;
     color: white;
     width: 20%;
+  }
+  &__search {
+    display: unset;
+    width: 10%;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #1dbf73;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+  }
+  &__default {
+    width: 10%;
+    color: white;
   }
 }

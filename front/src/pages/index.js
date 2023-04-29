@@ -13,7 +13,7 @@ export default function Home() {
   // console.log(process.env.NEXT_PUBLIC_API_URL);
 
   React.useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/freelance`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/freelance/search`, {
       headers: {
         'Content-Type': 'Application/json',
       },
@@ -29,14 +29,23 @@ export default function Home() {
     <>
       <Featured />
       <Partner />
-      <Card />
       <About />
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '25px' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '80%',
+          gap: '25px',
+        }}
+      >
         {data.map((freelance) => (
-          <Freelances freelance={freelance} />
+          <Card freelance={freelance} />
         ))}
       </div>
-      <Caroussel />
+      {/* <Card /> */}
+      {/* <Caroussel /> */}
       <Footer />
     </>
   );

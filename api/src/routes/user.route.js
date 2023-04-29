@@ -8,7 +8,7 @@ const verifyIsCompany = require('../middlewares/verifyIsCompany');
 
 router.get('/', verifyToken, userController.getMe);
 router.post('/forgot-password', userController.forgotPassword);
-router.post(
+router.get(
   '/my-freelance',
   verifyToken,
   verifyIsFreelance,

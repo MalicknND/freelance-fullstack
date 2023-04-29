@@ -1,40 +1,36 @@
-$primary-color: #007bff;
-$secondary-color: #6c757d;
+.card_wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 80%;
+}
 
 .card {
-  width: 18rem;
-  border: 1px solid $secondary-color;
-  margin: 0 auto;
-  border-radius: 20px;
+  height: 300px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
 
-  .card_img_top {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-  }
+.card img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 
-  .card_body {
-    padding: 1rem;
+.card_body {
+  padding: 1rem;
+}
 
-    .card_title {
-      font-size: 1.25rem;
-      color: $primary-color;
-    }
+.card_title {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
 
-    .card_text {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .btn {
-      display: block;
-      margin-top: 1rem;
-      background-color: $primary-color;
-      color: #fff;
-      border: none;
-      &:hover {
-        background-color: darken($primary-color, 10%);
-      }
-    }
-  }
+.card_text {
+  font-size: 1rem;
+  line-height: 1.5;
 }
