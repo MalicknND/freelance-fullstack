@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import Title from '@/components/UI/Title';
+import Image from '../../../../public/img/header.png';
 
 function index() {
   return (
@@ -55,7 +56,7 @@ function index() {
           </div>
         </div>
         <div className={styles.right}>
-          <img src="./img/mman.png" alt="photo" />
+          <img src={Image.src} alt="auth" />
         </div>
       </div>
     </div>

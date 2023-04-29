@@ -50,6 +50,9 @@
           input[type='text'] {
             padding-left: 30px;
           }
+          input::placeholder {
+            color: #a0a0a0;
+          }
 
           Input {
             border-radius: 10px;
@@ -90,7 +93,7 @@
     .right {
       height: 100%;
       img {
-        height: 70%;
+        height: 80%;
         object-fit: contain;
       }
     }
