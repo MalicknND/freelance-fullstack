@@ -24,7 +24,7 @@ function index() {
                     <Input
                       type="text"
                       name="email"
-                      placeholder="Développement Web..."
+                      placeholder="Développeur Web..."
                     />
                   </div>
                   <div className={styles.input}>

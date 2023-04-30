@@ -4,18 +4,30 @@ import styles from './index.module.scss';
 
 const index = ({ freelance }) => {
   return (
-    <div className={styles.card_wrapper}>
-      <div className={styles.card}>
+    <div className={styles.freelancer_card}>
+      <div className={styles.freelancer_card_header}>
         <img
-          src="https://assets.codepen.io/285131/uslmOwQpdRRUwr6AmBP6JdzeHjS.jpg"
-          alt="Image 1"
+          src="https://fontawesome.com/social/user-unlock?f=&s="
+          alt="Freelancer photo"
         />
-        <div className={styles.card_body}>
-          <h5 className={styles.card_title}>
-            {freelance.user.firstName}
-            {freelance.user.lastName}
-          </h5>
-          <p className={styles.card_text}>Contenu de la carte 1</p>
+      </div>
+      <div className={styles.freelancer_card_body}>
+        <h3 className={styles.freelancer_name}>
+          {freelance.user.firstName} {freelance.user.firstName}
+        </h3>
+        <p className={styles.freelancer_title}>Métier du freelancer</p>
+        <p clasNames={styles.freelancer_rate}>Taux journalier : $XX</p>
+        <p className={styles.freelancer_location}>Localisation du freelancer</p>
+        <div className={styles.freelancer_skills}>
+          <span>Compétences :</span>
+          <ul>
+            <li>Reactjs</li>
+            <li>JavaScript </li>
+            <li>Sass</li>
+            <li>ExpressJS</li>
+            <li>NodeJs</li>
+            <li>NodeJs</li>
+          </ul>
         </div>
       </div>
     </div>
