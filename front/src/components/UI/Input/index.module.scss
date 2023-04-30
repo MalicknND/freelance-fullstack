@@ -23,4 +23,19 @@
     border: 2px solid #5ae4a8; /* Bordure bleue */
     box-shadow: 0px 0px 5px #5ae4a8; /* Ombre bleue */
   }
+
+  @media only screen and (max-width: 768px) {
+    input {
+      font-size: 14px;
+      padding: 7px 10px;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    input {
+      font-size: 12px;
+      padding: 5px 8px;
+      width: 100%;
+    }
+  }
 }

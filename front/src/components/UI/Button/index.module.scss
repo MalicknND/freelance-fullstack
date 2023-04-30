@@ -55,7 +55,7 @@
   }
   &__search {
     display: unset;
-    width: 10%;
+    width: 15%;
     height: 45px;
     border-radius: 10px;
     background-color: #1dbf73;
@@ -66,5 +66,20 @@
   &__default {
     width: 10%;
     color: white;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .btn {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn {
+    width: 100%;
+    font-size: 14px;
+    justify-content: center;
   }
 }

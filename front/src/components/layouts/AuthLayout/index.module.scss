@@ -28,3 +28,55 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+    height: auto;
+    .left__part,
+    .right__part {
+      width: 100%;
+      height: auto;
+    }
+    .left__part {
+      order: 2;
+      .form__wrapper {
+        width: 100%;
+        margin: 30px 0;
+      }
+    }
+    .right__part {
+      order: 1;
+      .wrapper {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    .left__part {
+      .form__wrapper {
+        width: 100%;
+        margin: 30px 0;
+      }
+    }
+    .right__part {
+      img {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    .left__part {
+      .form__wrapper {
+        width: 100%;
+        margin: 20px 0;
+      }
+    }
+  }
+}

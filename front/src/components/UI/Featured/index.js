@@ -48,7 +48,7 @@ function index() {
           </div>
 
           <div className={styles.popular}>
-            <span>Popular:</span>
+            {/* <span>Popular:</span> */}
             <button>Front End</button>
             <button>Back End</button>
             <button>Logo Design</button>

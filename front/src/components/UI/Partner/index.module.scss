@@ -1,20 +1,28 @@
 .trustedBy {
-  background-color: #fafafa;
-  height: 100px;
   display: flex;
   justify-content: center;
-
-  .container {
-    max-width: 760px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: rgb(200, 200, 200);
-    font-weight: 500;
-
-    img {
-      height: 50px;
-      object-fit: contain;
+  align-items: center;
+  background-color: #f6f8fc;
+  padding: 50px 0;
+  margin-top: 50px;
+  img {
+    margin: 0 20px;
+    height: 50px;
+    @media only screen and (max-width: 768px) {
+      height: 40px;
+    }
+    @media only screen and (max-width: 480px) {
+      height: 30px;
+    }
+  }
+  span {
+    margin-right: 20px;
+    font-size: 24px;
+    @media only screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+    @media only screen and (max-width: 480px) {
+      font-size: 16px;
     }
   }
 }

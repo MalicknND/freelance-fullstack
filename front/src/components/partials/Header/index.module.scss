@@ -81,3 +81,90 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 1400px) {
+  .wrapper {
+    .container {
+      width: 90%;
+    }
+    .menu {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .wrapper {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 20px;
+      gap: 10px;
+
+      .logo {
+        font-size: 28px;
+
+        .text {
+          font-size: 24px;
+        }
+      }
+
+      .links {
+        display: none;
+      }
+    }
+    &.active {
+      .container {
+        .links {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+
+          span {
+            font-size: 18px;
+          }
+
+          .profil {
+            padding: 0;
+            border: none;
+          }
+        }
+      }
+    }
+    hr {
+      display: none;
+    }
+    .menu {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    .container {
+      .logo {
+        font-size: 24px;
+
+        .text {
+          font-size: 20px;
+        }
+      }
+    }
+    &.active {
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .links {
+          gap: 5px;
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

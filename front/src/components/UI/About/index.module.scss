@@ -59,3 +59,51 @@
     color: var(--joy-color-neutral-50); */
   text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .column {
+    flex: 0 0 auto;
+  }
+  .column_content {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .columns {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  .column {
+    flex: 1 1 40%;
+    max-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .columns {
+    justify-content: space-between;
+    gap: 65px;
+  }
+  .column {
+    flex: 1 1 30%;
+    max-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .columns {
+    justify-content: space-between;
+    gap: 80px;
+  }
+  .column {
+    flex: 1 1 25%;
+    max-width: 300px;
+  }
+}
