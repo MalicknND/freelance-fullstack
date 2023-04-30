@@ -133,7 +133,9 @@ exports.updateMyFreelance = async (req, res, next) => {
     if (req.body.rate) freelanceToUpdate.rate = req.body.rate;
     if (req.body.yearOfExperience)
       freelanceToUpdate.yearOfExperience = req.body.yearOfExperience;
-    if (req.body.skills) freelanceToUpdate.skills.push(req.body.skills);
+    // if (req.body.skills) freelanceToUpdate.skills.push(req.body.skills);
+    if (req.body.skills) freelanceToUpdate.skills = req.body.skills;
+    if (req.body.activity) freelanceToUpdate.activity = req.body.activity;
     await freelanceToUpdate.save();
     //return user
     res.send({
