@@ -21,12 +21,9 @@ const index = ({ freelance }) => {
         <div className={styles.freelancer_skills}>
           <span>Compétences :</span>
           <ul>
-            <li>Reactjs</li>
-            <li>JavaScript </li>
-            <li>Sass</li>
-            <li>ExpressJS</li>
-            <li>NodeJs</li>
-            <li>NodeJs</li>
+            {freelance.skills.map((skill, index) => (
+              <li key={index}>{skill.name}</li>
+            ))}
           </ul>
         </div>
       </div>

@@ -31,6 +31,9 @@ const Index = () => {
 
   useEffect(() => {
     setUserForm(user);
+    const token = localStorage.getItem('token');
+
+    setToken(token);
   }, [user]);
 
   useEffect(() => {
@@ -59,16 +62,12 @@ const Index = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
-    console.log(token);
-    setToken(token);
+
     fetchDataUpdate();
     if (dataUpdate.success) {
       setIsOpen(false);
     }
   };
-  console.log(token);
-  // console.log(userForm);
 
   return (
     <>
