@@ -36,7 +36,7 @@ exports.getMe = async (req, res, next) => {
 exports.getMyFreelance = async (req, res, next) => {
   try {
     //find freelance and populate skills && activity
-    const me = await User.findById(req.body.freelance_id).populate([
+    const me = await Freelance.findById(req.body.freelance_id).populate([
       {
         path: 'skills',
         model: 'Skill',
