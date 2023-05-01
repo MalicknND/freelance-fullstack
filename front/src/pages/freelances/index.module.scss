@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  .red {
+    width: 25%;
+    background: red;
+  }
+  .blue {
+    background: blue;
+    width: 75%;
+  }
+}

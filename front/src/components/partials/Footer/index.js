@@ -3,95 +3,199 @@ import styles from './index.module.scss';
 
 function index() {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.top}>
-          <div className={styles.item}>
-            <h2>Categories</h2>
-            <span>Graphics & Design</span>
-            <span>Digital Marketing</span>
-            <span>Writing & Translation</span>
-            <span>Video & Animation</span>
-            <span>Music & Audio</span>
-            <span>Programming & Tech</span>
-            <span>Data</span>
-            <span>Business</span>
-            <span>Lifestyle</span>
-            <span>Photography</span>
-            <span>Sitemap</span>
+    <footer className={styles.footer}>
+      <div className={styles.footer_slices}>
+        <div className={styles.infos}>
+          <div className={styles.logo}>
+            <span className={styles.text}>Freelancer</span>
+            <span className={styles.dot}>.</span>
           </div>
-          <div className={styles.item}>
-            <h2>About</h2>
-            <span>Press & News</span>
-            <span>Partnerships</span>
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Intellectual Property Claims</span>
-            <span>Investor Relations</span>
-            <span>Contact Sales</span>
-          </div>
-          <div className={styles.item}>
-            <h2>Support</h2>
-            <span>Help & Support</span>
-            <span>Trust & Safety</span>
-            <span>Selling on Fiverr</span>
-            <span>Buying on Fiverr</span>
-          </div>
-          <div className={styles.item}>
-            <h2>Community</h2>
-            <span>Customer Success Stories</span>
-            <span>Community hub</span>
-            <span>Forum</span>
-            <span>Events</span>
-            <span>Blog</span>
-            <span>Influencers</span>
-            <span>Affiliates</span>
-            <span>Podcast</span>
-            <span>Invite a Friend</span>
-            <span>Become a Seller</span>
-            <span>Community Standards</span>
-          </div>
-          <div className={styles.item}>
-            <h2>More From Fiverr</h2>
-            <span>Fiverr Business</span>
-            <span>Fiverr Pro</span>
-            <span>Fiverr Logo Maker</span>
-            <span>Fiverr Guides</span>
-            <span>Get Inspired</span>
-            <span>Fiverr Select</span>
-            <span>ClearVoice</span>
-            <span>Fiverr Workspace</span>
-            <span>Learn</span>
-            <span>Working Not Working</span>
+          <p>
+            <span>
+              241 Saint Denis<br></br>
+            </span>
+            <span>
+              75000 Paris<br></br>
+            </span>
+          </p>
+          <p>
+            <a href="/">Aide & Support</a>
+          </p>
+          <div className={styles.social_icons}>
+            <div>
+              <div className={styles.social_icon}>
+                <a href="#">
+                  {' '}
+                  <img src="/img/twitter.png" alt="" />
+                </a>
+              </div>
+            </div>
+            <div>
+              <div className={styles.social_icon}>
+                <a href="#">
+                  {' '}
+                  <img src="/img/instagram.png" alt="" />
+                </a>
+              </div>
+            </div>
+            <div>
+              <div className={styles.social_icon}>
+                <a href="#">
+                  {' '}
+                  <img src="/img/linkedin.png" alt="" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <hr />
-        <div className={styles.bottom}>
-          <div className={styles.left}>
-            <h2>Freelancer</h2>
-            <span>©Freelancer International Ltd. 2023</span>
+
+        <section className={styles.links}>
+          <div className={styles.links_column}>
+            <div className={styles.links_column_title}>
+              <h6>Pour les entreprises</h6>
+            </div>
+            <div>
+              <div>
+                <p>Pourquoi Freelancer ?</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Marketplace de freelances</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Solution de gestion de freelances</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Fonctionnalités produit</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Malt Open: solution de portage administratif</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Demande de démo</p>
+              </div>
+            </div>
           </div>
-          <div className={styles.right}>
-            <div className={styles.social}>
-              <img src="/img/twitter.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/linkedin.png" alt="" />
-              <img src="/img/pinterest.png" alt="" />
-              <img src="/img/instagram.png" alt="" />
+        </section>
+        <section className={styles.links}>
+          <div className={styles.links_column}>
+            <div className={styles.links_column_title}>
+              <h6>Pour les freelances</h6>
             </div>
-            <div className={styles.link}>
-              <img src="/img/language.png" alt="" />
-              <span>English</span>
+            <div>
+              <div>
+                <p>Pourquoi Freelancer ?</p>
+              </div>
             </div>
-            <div className={styles.link}>
-              <img src="/img/coin.png" alt="" />
-              <span>USD</span>
+            <div>
+              <div>
+                <p>Community & Programmes</p>
+              </div>
             </div>
-            <img src="/img/accessibility.png" alt="" />
+            <div>
+              <div>
+                <p>Fonctionnalités produit</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Programme Super Malter</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Malt Academy</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Partenaires</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Programme d'apport d'affaires</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+        <section className={styles.links}>
+          <div className={styles.links_column}>
+            <div className={styles.links_column_title}>
+              <h6>Ressources</h6>
+            </div>
+            <div>
+              <div>
+                <p>Articles</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Guides</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Success stories</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Aide</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className={styles.links}>
+          <div className={styles.links_column}>
+            <div className={styles.links_column_title}>
+              <h6>Freelancer</h6>
+            </div>
+            <div>
+              <div>
+                <p>A propos de Freelancer</p>
+              </div>
+            </div>
+
+            <div>
+              <div>
+                <p>Presse</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Presse</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Protection des données</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>
+                  {' '}
+                  <a href="#">Site map</a>{' '}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+      <div className={styles.copyright}>
+        © 2023 FREELANCER. ALL RIGHTS RESERVED.
+      </div>
+    </footer>
   );
 }
 
