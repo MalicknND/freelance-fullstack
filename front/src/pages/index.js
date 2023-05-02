@@ -1,8 +1,8 @@
 import React from 'react';
 import Title from '@/components/UI/Title';
-import Freelances from '@/components/UI/Freelances';
+
 import Featured from '@/components/UI/Featured';
-import Caroussel from '@/components/UI/Caroussel';
+
 import About from '@/components/UI/About';
 import Partner from '@/components/UI/Partner';
 import Footer from '@/components/partials/Footer';
@@ -50,8 +50,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      {/* <Card /> */}
-      {/* <Caroussel /> */}
+
       <Footer />
     </>
   );

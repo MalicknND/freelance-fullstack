@@ -17,13 +17,18 @@ const Index = () => {
   const { isLogged, user, updateUser } = useContext(UserContext);
 
   const [token, setToken] = useState();
+  const [freelance_id, setFreelance_id] = useState();
 
   const [userForm, setUserForm] = useState();
+  const [freelanceForm, setFreelanceForm] = useState();
+  const [skillsForm, setSkillsForm] = useState();
 
+  //les states isOpen permettent de gérer l'ouverture et la fermeture des modals
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
 
+  // requete pour modifier le profil
   const {
     data: dataUpdate,
     error: errorUpdate,
@@ -31,11 +36,44 @@ const Index = () => {
     fetchData: fetchDataUpdate,
     error,
   } = useFetch({ url: '/user', method: 'PUT', body: userForm, token: token });
+  const {
+    data: freelance,
+    error: errorFreelance,
+    loading: loadingFreelance,
+    fetchData: fetchDataFreelance,
+  } = useFetch({
+    url: '/user/my-freelance',
+    method: 'POST',
+    body: { freelance_id },
+    token: token,
+  });
+  const {
+    data: skills,
+    error: errorSkills,
+    loading: loadingSkills,
+    fetchData: fetchDataSkills,
+  } = useFetch({
+    url: '/skill',
+    method: 'GET',
+    body: null,
+    token: null,
+  });
+  const {
+    data: activities,
+    error: errorActivities,
+    loading: loadingActivities,
+    fetchData: fetchDataActivities,
+  } = useFetch({
+    url: '/activity',
+    method: 'GET',
+    body: null,
+    token: null,
+  });
 
+  // all the useEffects
   useEffect(() => {
     setUserForm(user);
     const token = localStorage.getItem('token');
-
     setToken(token);
   }, [user]);
 
