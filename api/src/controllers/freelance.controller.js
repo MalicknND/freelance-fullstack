@@ -84,7 +84,8 @@ exports.findSearchString = async (req, res, next) => {
             freelance.user.firstName.includes(el) ||
             freelance.user.lastName.includes(el) ||
             freelance.user.address.city.includes(el) ||
-            freelance.skills.some((skill) => skill.name.includes(el))
+            freelance.skills.some((skill) => skill.name.includes(el)) ||
+            freelance.activity.name.includes(el)
           );
         });
       });
