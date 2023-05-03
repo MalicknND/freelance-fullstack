@@ -17,11 +17,11 @@ const Index = () => {
   const { isLogged, user, updateUser } = useContext(UserContext);
 
   const [token, setToken] = useState();
-  const [freelance_id, setFreelance_id] = useState();
+  const [freelance_id, setFreelance_id] = useState(null);
 
   const [userForm, setUserForm] = useState();
-  const [freelanceForm, setFreelanceForm] = useState();
-  const [skillsForm, setSkillsForm] = useState();
+  const [freelanceForm, setFreelanceForm] = useState(null);
+  const [skillsForm, setSkillsForm] = useState([]);
 
   //les states isOpen permettent de gérer l'ouverture et la fermeture des modals
   const [isOpen1, setIsOpen1] = useState(false);
@@ -30,13 +30,6 @@ const Index = () => {
 
   // requete pour modifier le profil
   const {
-    data: dataUpdate,
-    error: errorUpdate,
-    loading: loadingUpdate,
-    fetchData: fetchDataUpdate,
-    error,
-  } = useFetch({ url: '/user', method: 'PUT', body: userForm, token: token });
-  const {
     data: freelance,
     error: errorFreelance,
     loading: loadingFreelance,
@@ -44,9 +37,28 @@ const Index = () => {
   } = useFetch({
     url: '/user/my-freelance',
     method: 'POST',
-    body: { freelance_id },
+    body: { freelance_id: freelance_id },
     token: token,
   });
+  const {
+    data: dataUpdate,
+    error: errorUpdate,
+    loading: loadingUpdate,
+    fetchData: fetchDataUpdate,
+    error,
+  } = useFetch({ url: '/user', method: 'PUT', body: userForm, token: token });
+  const {
+    data: freelanceUpdate,
+    error: errorUpdateFreelance,
+    loading: loadingUpdateFreelance,
+    fetchData: fetchFreelanceUpdate,
+  } = useFetch({
+    url: '/user/freelance',
+    method: 'PUT',
+    body: userForm,
+    token: token,
+  });
+
   const {
     data: skills,
     error: errorSkills,
@@ -73,16 +85,54 @@ const Index = () => {
   // all the useEffects
   useEffect(() => {
     setUserForm(user);
+    if (user.freelance !== undefined) {
+      setFreelance_id(user.freelance._id);
+      console.log(user, 'USERR IS HERE');
+    }
     const token = localStorage.getItem('token');
     setToken(token);
   }, [user]);
 
   useEffect(() => {
+    if (freelance_id !== null) {
+      fetchDataFreelance();
+      fetchDataSkills();
+      fetchDataActivities();
+    }
+  }, [freelance_id]);
+
+  useEffect(() => {
+    if (freelance !== null) {
+      console.log(freelance, 'FREELANCE IS HERE');
+      setFreelanceForm(freelance.freelance);
+    }
+  }, [freelance]);
+  useEffect(() => {
+    if (skills !== null) {
+      console.log(freelance, 'SKILLS ARE HERE');
+    }
+  }, [skills]);
+  useEffect(() => {
+    if (activities !== null) {
+      console.log(activities, 'ACTIVITIES ARE HERE');
+    }
+  }, [activities]);
+
+  useEffect(() => {
     if (dataUpdate.success) {
-      setIsOpen(false);
+      setIsOpen1(false);
+
       updateUser(dataUpdate.user);
     }
   }, [dataUpdate]);
+  useEffect(() => {
+    if (freelanceUpdate.success) {
+      fetchDataFreelance();
+      setIsOpen1(false);
+      setIsOpen2(false);
+      setIsOpen2(false);
+    }
+  }, [freelanceUpdate]);
 
   // cette fonction permet de mettre à jour le state userForm et de gérer les changements dans les inputs
   const handleChange = (e) => {
@@ -106,7 +156,19 @@ const Index = () => {
 
     fetchDataUpdate();
     if (dataUpdate.success) {
-      setIsOpen(false);
+      setIsOpen1(false);
+      setIsOpen2(false);
+      setIsOpen2(false);
+    }
+  };
+  const submitFormFreelance = (e) => {
+    e.preventDefault();
+
+    fetchFreelanceUpdate();
+    if (freelanceUpdate.success) {
+      setIsOpen1(false);
+      setIsOpen2(false);
+      setIsOpen2(false);
     }
   };
 
@@ -137,24 +199,29 @@ const Index = () => {
                   />
                 </span>
                 <img
-                  class="malt-plus-banner-dashboard__logo"
+                  className="malt-plus-banner-dashboard__logo"
                   src="https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1606/tuktukdesign160600120/59070201-user-icon-man-profil-homme-d-affaires-avatar-personne-ic%C3%B4ne-illustration-vectorielle.jpg?ver=6"
                   width="180"
                   height="170"
                 />
                 <div className={styles.profile_text}>
-                  <h1>Malick Siguy Ndiaye</h1>
+                  <h1>
+                    {user.firstName} {user.lastName}
+                  </h1>
                   <p>Web Developer</p>
-                  <span>Localisation</span>
+                  <span>
+                    {user.address.street} {user.address.zipCode}{' '}
+                    {user.address.city}{' '}
+                  </span>
                 </div>
                 <div className={styles.rectangles}>
                   <div className={styles.rectangle}>
                     <p>Tarif Journalier</p>
-                    <p>350</p>
+                    <p>{freelance.rate}€/Jour</p>
                   </div>
                   <div className={styles.rectangle}>
                     <p>Expérience</p>
-                    <p>350 €/Jour</p>
+                    <p>{freelance.yearOfExperience} €/Jour</p>
                   </div>
                 </div>
               </>
@@ -292,11 +359,11 @@ const Index = () => {
                   <br />
                   <form
                     onSubmit={(e) => {
-                      submitForm(e);
+                      submitFormFreelance(e);
                     }}
                   >
                     <Input
-                      label="Prénom"
+                      label="test"
                       type="text"
                       name="firstName"
                       value={userForm.firstName}
