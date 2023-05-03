@@ -21,19 +21,11 @@ function index() {
                 <div className={styles.searchInputs}>
                   <div className={styles.input}>
                     <img src="./img/search.png" alt="" />
-                    <Input
-                      type="text"
-                      name="email"
-                      placeholder="Développeur Web..."
-                    />
+                    <Input type="text" placeholder="Développeur Web..." />
                   </div>
                   <div className={styles.input}>
                     <img src="./img/map.png" alt="" />
-                    <Input
-                      type="text"
-                      name="email"
-                      placeholder="Paris, France..."
-                    />
+                    <Input type="text" placeholder="Paris, France..." />
                   </div>
                 </div>
                 <Button type="submit" title="Trouver" className="btn__search" />

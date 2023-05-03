@@ -9,3 +9,82 @@
     width: 75%;
   }
 }
+
+.search {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 35px;
+
+  .searchForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px 48px;
+    width: 100%;
+  }
+  .searchInputs {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex: 1 1 0;
+  }
+  .input {
+    display: inline-block;
+    flex-direction: column;
+    width: 60%;
+    max-width: 350px;
+    position: relative;
+
+    img {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 18px;
+      top: 36%;
+    }
+
+    input[type='text'] {
+      padding-left: 30px;
+    }
+    input::placeholder {
+      color: #a0a0a0;
+    }
+
+    Input {
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      background-color: #f5f5f5;
+      color: black;
+      cursor: pointer;
+    }
+  }
+  .location {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.freelances {
+  width: 100%;
+  display: flex;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding-bottom: 25px;
+}
+.left {
+  width: 25%;
+  background: red;
+}
+.right {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+  .right_body {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

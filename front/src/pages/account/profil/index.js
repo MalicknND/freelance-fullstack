@@ -8,6 +8,7 @@ import Footer from '@/components/partials/Footer';
 import Modal from '@/components/UI/Modal';
 import Loading from '@/components/UI/Loading';
 import Title from '@/components/UI/Title';
+import ProfileCard from '@/components/UI/ProfileCard';
 
 import styles from './index.module.scss';
 
@@ -26,7 +27,6 @@ const Index = () => {
   //les states isOpen permettent de gérer l'ouverture et la fermeture des modals
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
 
   // requete pour modifier le profil
   const {
@@ -121,15 +121,12 @@ const Index = () => {
   useEffect(() => {
     if (dataUpdate.success) {
       setIsOpen1(false);
-
       updateUser(dataUpdate.user);
     }
   }, [dataUpdate]);
   useEffect(() => {
     if (freelanceUpdate.success) {
       fetchDataFreelance();
-      setIsOpen1(false);
-      setIsOpen2(false);
       setIsOpen2(false);
     }
   }, [freelanceUpdate]);
@@ -151,23 +148,23 @@ const Index = () => {
     }
   };
 
+  const handleChangeFreelance = (e) => {
+    setFreelanceForm({ ...freelanceForm, [e.target.name]: e.target.value });
+    console.log(freelanceForm, 'FREELANCE FORM');
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
 
     fetchDataUpdate();
     if (dataUpdate.success) {
       setIsOpen1(false);
-      setIsOpen2(false);
-      setIsOpen2(false);
     }
   };
   const submitFormFreelance = (e) => {
     e.preventDefault();
-
     fetchFreelanceUpdate();
     if (freelanceUpdate.success) {
-      setIsOpen1(false);
-      setIsOpen2(false);
       setIsOpen2(false);
     }
   };
@@ -178,9 +175,6 @@ const Index = () => {
 
   const handleClick2 = () => {
     setIsOpen2(true);
-  };
-  const handleClick3 = () => {
-    setIsOpen3(true);
   };
 
   return (
@@ -195,7 +189,7 @@ const Index = () => {
                     src="/img/edit.png"
                     alt=""
                     className={styles.profile_icon}
-                    onClick={handleClick3}
+                    onClick={handleClick1}
                   />
                 </span>
                 <img
@@ -204,26 +198,30 @@ const Index = () => {
                   width="180"
                   height="170"
                 />
-                <div className={styles.profile_text}>
-                  <h1>
-                    {user.firstName} {user.lastName}
-                  </h1>
-                  <p>{freelance.freelance.activity.name}</p>
-                  <span>
-                    {user.address.street} {user.address.zipCode}{' '}
-                    {user.address.city}{' '}
-                  </span>
-                </div>
-                <div className={styles.rectangles}>
-                  <div className={styles.rectangle}>
-                    <p>Tarif Journalier</p>
-                    <p>{freelance.freelance.rate}€/Jour</p>
-                  </div>
-                  <div className={styles.rectangle}>
-                    <p>Expérience</p>
-                    <p>{freelance.freelance.yearOfExperience} ans</p>
-                  </div>
-                </div>
+                {freelance.freelance != null && (
+                  <>
+                    <div className={styles.profile_text}>
+                      <h1>
+                        {user.firstName} {user.lastName}
+                      </h1>
+                      <p>{freelance.freelance.activity.name}</p>
+                      <span>
+                        {user.address.street} {user.address.zipCode}{' '}
+                        {user.address.city}{' '}
+                      </span>
+                    </div>
+                    <div className={styles.rectangles}>
+                      <div className={styles.rectangle}>
+                        <p>Tarif Journalier</p>
+                        <p>{freelance.freelance.rate}€/Jour</p>
+                      </div>
+                      <div className={styles.rectangle}>
+                        <p>Expérience</p>
+                        <p>{freelance.freelance.yearOfExperience} ans</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
@@ -321,64 +319,26 @@ const Index = () => {
                   <br />
                   <form
                     onSubmit={(e) => {
-                      submitForm(e);
-                    }}
-                  >
-                    <Input
-                      label="Prénom"
-                      type="text"
-                      name="firstName"
-                      value={userForm.firstName}
-                      isRequired={true}
-                      placeholder="entrer votre prénom"
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Input
-                      label="Nom"
-                      type="text"
-                      name="lastName"
-                      value={userForm.lastName}
-                      isRequired={true}
-                      placeholder="entrer votre nom"
-                      onChange={(e) => handleChange(e)}
-                    />
-
-                    <Button
-                      type="submit"
-                      title="modifier"
-                      className="btn__secondary"
-                    />
-                  </form>
-                </Modal>
-              )}
-              {isOpen3 && (
-                <Modal
-                  title="Modifier mon profil"
-                  closeModal={() => setIsOpen3(false)}
-                >
-                  <br />
-                  <form
-                    onSubmit={(e) => {
                       submitFormFreelance(e);
                     }}
                   >
                     <Input
-                      label="test"
-                      type="text"
-                      name="firstName"
-                      value={userForm.firstName}
+                      label="Taux journalier"
+                      type="number"
+                      name="rate"
+                      value={freelanceForm.rate}
                       isRequired={true}
-                      placeholder="entrer votre prénom"
-                      onChange={(e) => handleChange(e)}
+                      placeholder="tau journalier"
+                      onChange={(e) => handleChangeFreelance(e)}
                     />
                     <Input
-                      label="Nom"
-                      type="text"
-                      name="lastName"
-                      value={userForm.lastName}
+                      label="Année d'expérience"
+                      type="number"
+                      name="yearOfExperience"
+                      value={freelanceForm.yearOfExperience}
                       isRequired={true}
-                      placeholder="entrer votre nom"
-                      onChange={(e) => handleChange(e)}
+                      placeholder="année d'expérience"
+                      onChange={(e) => handleChangeFreelance(e)}
                     />
 
                     <Button
@@ -392,81 +352,7 @@ const Index = () => {
 
               <div className={styles.formulaire}>
                 <div className={styles.profile_container}>
-                  <div className={styles.profile_card}>
-                    {user && (
-                      <>
-                        <span>
-                          <img
-                            src="/img/edit.png"
-                            alt=""
-                            className={styles.profile_icon}
-                            onClick={handleClick1}
-                          />
-                        </span>
-                        <div className={styles.profile_card_body}>
-                          <Title title="Profil" Level="h2" />
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Type de compte :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.userType}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Prénom :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.firstName}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Nom :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.lastName}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Email :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.email}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Numéro de portable :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.phone}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Adresse :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.street}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Code postal :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.zipCode}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Ville :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.city}
-                            </p>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  <ProfileCard user={user} handleClick={handleClick1} />
 
                   <div className={styles.profile_card}>
                     {user && (
@@ -481,56 +367,42 @@ const Index = () => {
                         </span>
                         <div className={styles.profile_card_body}>
                           <Title title="Compétences" Level="h2" />
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Prénom :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.firstName}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Nom :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.lastName}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Email :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.email}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Numéro de portable :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.phone}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Adresse :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.street}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>
-                              Code postal :
-                            </p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.zipCode}
-                            </p>
-                          </div>
-                          <div className={styles.profile_info}>
-                            <p className={styles.profile_info_label}>Ville :</p>
-                            <p className={styles.profile_info_value}>
-                              {user.address.city}
-                            </p>
-                          </div>
+                          {freelance.freelance != null && (
+                            <>
+                              <div className={styles.profile_info}>
+                                <p className={styles.profile_info_label}>
+                                  Taux Journalier :
+                                </p>
+                                <p className={styles.profile_info_value}>
+                                  {freelance.freelance.rate}€/Jour
+                                </p>
+                              </div>
+                              <div className={styles.profile_info}>
+                                <p className={styles.profile_info_label}>
+                                  Année d'éxperience :
+                                </p>
+                                <p className={styles.profile_info_value}>
+                                  {freelance.freelance.yearOfExperience} ans
+                                </p>
+                              </div>
+                              <div className={styles.profile_info}>
+                                <p className={styles.profile_info_label}>
+                                  Métier :
+                                </p>
+                                <p className={styles.profile_info_value}>
+                                  {freelance.freelance.activity.name}
+                                </p>
+                              </div>
+                              <div className={styles.profile_info}>
+                                <p className={styles.profile_info_label}>
+                                  Compétences :
+                                </p>
+                                <p className={styles.profile_info_value}>
+                                  {user.phone}
+                                </p>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </>
                     )}
