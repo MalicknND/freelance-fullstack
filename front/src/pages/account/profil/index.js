@@ -55,7 +55,7 @@ const Index = () => {
   } = useFetch({
     url: '/user/freelance',
     method: 'PUT',
-    body: userForm,
+    body: freelanceForm,
     token: token,
   });
 
