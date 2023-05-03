@@ -208,7 +208,7 @@ const Index = () => {
                   <h1>
                     {user.firstName} {user.lastName}
                   </h1>
-                  <p>Web Developer</p>
+                  <p>{freelance.freelance.activity.name}</p>
                   <span>
                     {user.address.street} {user.address.zipCode}{' '}
                     {user.address.city}{' '}
@@ -217,11 +217,11 @@ const Index = () => {
                 <div className={styles.rectangles}>
                   <div className={styles.rectangle}>
                     <p>Tarif Journalier</p>
-                    <p>{freelance.rate}€/Jour</p>
+                    <p>{freelance.freelance.rate}€/Jour</p>
                   </div>
                   <div className={styles.rectangle}>
                     <p>Expérience</p>
-                    <p>{freelance.yearOfExperience} €/Jour</p>
+                    <p>{freelance.freelance.yearOfExperience} ans</p>
                   </div>
                 </div>
               </>
