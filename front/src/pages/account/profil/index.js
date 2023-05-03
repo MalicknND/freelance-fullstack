@@ -328,7 +328,7 @@ const Index = () => {
                       name="rate"
                       value={freelanceForm.rate}
                       isRequired={true}
-                      placeholder="tau journalier"
+                      placeholder="taux journalier"
                       onChange={(e) => handleChangeFreelance(e)}
                     />
                     <Input
@@ -366,7 +366,7 @@ const Index = () => {
                           />
                         </span>
                         <div className={styles.profile_card_body}>
-                          <Title title="Compétences" Level="h2" />
+                          <Title title="Freelance" Level="h2" />
                           {freelance.freelance != null && (
                             <>
                               <div className={styles.profile_info}>
@@ -397,9 +397,13 @@ const Index = () => {
                                 <p className={styles.profile_info_label}>
                                   Compétences :
                                 </p>
-                                <p className={styles.profile_info_value}>
-                                  {user.phone}
-                                </p>
+                                <ul className={styles.profile_info_ul}>
+                                  {freelance.freelance.skills.map(
+                                    (skill, index) => (
+                                      <li key={index}>{skill.name}</li>
+                                    )
+                                  )}
+                                </ul>
                               </div>
                             </>
                           )}
