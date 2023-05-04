@@ -15,7 +15,10 @@ const index = ({ freelance }) => {
         <h3 className={styles.freelancer_name}>
           {freelance.user.firstName} {freelance.user.lastName}
         </h3>
-        <p className={styles.freelancer_title}>{freelance.activity.name}</p>
+        {freelance.activity && (
+          <p className={styles.freelancer_title}>{freelance.activity.name}</p>
+        )}
+
         <p clasNames={styles.freelancer_rate}>
           Taux journalier : {freelance.rate}€/jour
         </p>

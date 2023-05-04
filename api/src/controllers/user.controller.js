@@ -180,6 +180,9 @@ exports.resetPassword = async (req, res, next) => {
   try {
     //find user
     const user = await User.findOne({ email: req.userToken.body.email });
+    if (!user) {
+      throw new Error('User not found');
+    }
     //update password property with new one
     user.password = req.body.password;
     //save in DB
