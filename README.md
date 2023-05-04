@@ -1,18 +1,18 @@
 # Fonctionnalités
 
-Une interface de connexion et d’inscription
+Une interface de connexion et d’inscription ✅
 
 L’application permet de consulter et rechercher des freelances à partir de la homepage
 
 # Deux types d’inscriptions :
 
-Inscription de compte Freelance
-Inscription de compte Entreprise
+Inscription de compte Freelance✅
+Inscription de compte Entreprise✅
 
 # Tous les utilisateurs (freelance et entreprise) peuvent :
 
-Modifier leur profil
-Se connecter et accéder à leur compte
+Modifier leur profil✅ Que freelances pour le moment
+Se connecter et accéder à leur compte ✅
 Régénérer un mot de passe (mot de pass oublié)
 
 # Interface Freelance
