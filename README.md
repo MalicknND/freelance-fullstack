@@ -11,7 +11,7 @@ Inscription de compte Entreprise✅
 
 # Tous les utilisateurs (freelance et entreprise) peuvent :
 
-Modifier leur profil✅ Que freelances pour le moment
+Modifier leur profil ✅ Que freelances pour le moment
 Se connecter et accéder à leur compte ✅
 Régénérer un mot de passe (mot de pass oublié)
 
