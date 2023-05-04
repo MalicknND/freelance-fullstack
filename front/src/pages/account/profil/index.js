@@ -9,6 +9,7 @@ import Modal from '@/components/UI/Modal';
 import Loading from '@/components/UI/Loading';
 import Title from '@/components/UI/Title';
 import UserInfo from '@/components/UI/UserInfo';
+import Freelance from '@/components/UI/UserTypeCard/Freelance';
 
 import styles from './index.module.scss';
 
@@ -310,107 +311,53 @@ const Index = () => {
           </div>
 
           <div className={styles.wrapper}>
-            <>
-              {isOpen2 && (
-                <Modal
-                  title="Modifier mon profil"
-                  closeModal={() => setIsOpen2(false)}
+            {isOpen2 && (
+              <Modal
+                title="Modifier mon profil"
+                closeModal={() => setIsOpen2(false)}
+              >
+                <br />
+                <form
+                  onSubmit={(e) => {
+                    submitFormFreelance(e);
+                  }}
                 >
-                  <br />
-                  <form
-                    onSubmit={(e) => {
-                      submitFormFreelance(e);
-                    }}
-                  >
-                    <Input
-                      label="Taux journalier"
-                      type="number"
-                      name="rate"
-                      value={freelanceForm.rate}
-                      isRequired={true}
-                      placeholder="taux journalier"
-                      onChange={(e) => handleChangeFreelance(e)}
-                    />
-                    <Input
-                      label="Année d'expérience"
-                      type="number"
-                      name="yearOfExperience"
-                      value={freelanceForm.yearOfExperience}
-                      isRequired={true}
-                      placeholder="année d'expérience"
-                      onChange={(e) => handleChangeFreelance(e)}
-                    />
+                  <Input
+                    label="Taux journalier"
+                    type="number"
+                    name="rate"
+                    value={freelanceForm.rate}
+                    isRequired={true}
+                    placeholder="taux journalier"
+                    onChange={(e) => handleChangeFreelance(e)}
+                  />
+                  <Input
+                    label="Année d'expérience"
+                    type="number"
+                    name="yearOfExperience"
+                    value={freelanceForm.yearOfExperience}
+                    isRequired={true}
+                    placeholder="année d'expérience"
+                    onChange={(e) => handleChangeFreelance(e)}
+                  />
 
-                    <Button
-                      type="submit"
-                      title="modifier"
-                      className="btn__secondary"
-                    />
-                  </form>
-                </Modal>
-              )}
-
+                  <Button
+                    type="submit"
+                    title="modifier"
+                    className="btn__secondary"
+                  />
+                </form>
+              </Modal>
+            )}
+            <>
               <div className={styles.formulaire}>
                 <div className={styles.profile_container}>
                   <UserInfo user={user} handleClick={handleClick1} />
-
-                  <div className={styles.profile_card}>
-                    {user && (
-                      <>
-                        <span>
-                          <img
-                            src="/img/edit.png"
-                            alt=""
-                            className={styles.profile_icon}
-                            onClick={handleClick2}
-                          />
-                        </span>
-                        <div className={styles.profile_card_body}>
-                          <Title title="Freelance" Level="h2" />
-                          {freelance.freelance != null && (
-                            <>
-                              <div className={styles.profile_info}>
-                                <p className={styles.profile_info_label}>
-                                  Taux Journalier :
-                                </p>
-                                <p className={styles.profile_info_value}>
-                                  {freelance.freelance.rate}€/Jour
-                                </p>
-                              </div>
-                              <div className={styles.profile_info}>
-                                <p className={styles.profile_info_label}>
-                                  Année d'éxperience :
-                                </p>
-                                <p className={styles.profile_info_value}>
-                                  {freelance.freelance.yearOfExperience} ans
-                                </p>
-                              </div>
-                              <div className={styles.profile_info}>
-                                <p className={styles.profile_info_label}>
-                                  Métier :
-                                </p>
-                                <p className={styles.profile_info_value}>
-                                  {freelance.freelance.activity.name}
-                                </p>
-                              </div>
-                              <div className={styles.profile_info}>
-                                <p className={styles.profile_info_label}>
-                                  Compétences :
-                                </p>
-                                <ul className={styles.profile_info_ul}>
-                                  {freelance.freelance.skills.map(
-                                    (skill, index) => (
-                                      <li key={index}>{skill.name}</li>
-                                    )
-                                  )}
-                                </ul>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  <Freelance
+                    user={user}
+                    freelance={freelance}
+                    handleClick={handleClick2}
+                  />
                 </div>
               </div>
             </>

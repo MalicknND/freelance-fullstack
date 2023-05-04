@@ -132,16 +132,6 @@
   width: 300px;
 }
 
-.profile_info_ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .profile {
     flex-direction: column;
@@ -235,11 +225,17 @@
       height: calc(100% - 215px);
     }
   }
+  .profile_formulaire {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .wrapper {
-    width: 70%;
+    width: 100%;
+    max-width: 1280px;
+    padding-right: 32px;
+    padding-left: 32px;
   }
   .left {
     flex: 1 0 320px;
