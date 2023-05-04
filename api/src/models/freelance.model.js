@@ -34,7 +34,7 @@ const freelanceSchema = mongoose.Schema(
     activity: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Activity',
-      required: true,
+      // required: true,
     },
   },
   {

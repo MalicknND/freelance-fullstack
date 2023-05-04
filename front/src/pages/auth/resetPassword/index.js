@@ -23,7 +23,6 @@ const index = () => {
     if (data.token) {
       setToken(data.token);
       localStorage.setItem('token', data.token);
-      // router.push('/account/profil');
     }
   }, [data]);
 
