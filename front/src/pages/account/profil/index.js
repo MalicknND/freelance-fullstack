@@ -8,7 +8,7 @@ import Footer from '@/components/partials/Footer';
 import Modal from '@/components/UI/Modal';
 import Loading from '@/components/UI/Loading';
 import Title from '@/components/UI/Title';
-import ProfileCard from '@/components/UI/ProfileCard';
+import UserInfo from '@/components/UI/UserInfo';
 
 import styles from './index.module.scss';
 
@@ -224,93 +224,93 @@ const Index = () => {
                 )}
               </>
             )}
+            {isOpen1 && (
+              <Modal
+                title="Modifier mon profil"
+                closeModal={() => setIsOpen1(false)}
+              >
+                <br />
+                <form
+                  onSubmit={(e) => {
+                    submitForm(e);
+                  }}
+                >
+                  <Input
+                    label="Prénom"
+                    type="text"
+                    name="firstName"
+                    value={userForm.firstName}
+                    isRequired={true}
+                    placeholder="entrer votre prénom"
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Input
+                    label="Nom"
+                    type="text"
+                    name="lastName"
+                    value={userForm.lastName}
+                    isRequired={true}
+                    placeholder="entrer votre nom"
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Input
+                    label="Email"
+                    type="text"
+                    name="email"
+                    value={userForm.email}
+                    isRequired={true}
+                    placeholder="entrer votre email"
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Input
+                    label="Numéro de portable"
+                    type="tel"
+                    name="phone"
+                    value={userForm.phone}
+                    isRequired={true}
+                    placeholder="entrer votre numéro de portable"
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Input
+                    label="Addresse"
+                    type="adress"
+                    name="street"
+                    placeholder="entrer votre rue"
+                    isRequired={true}
+                    onChange={(e) => handleChange(e)}
+                    value={userForm.address.street}
+                  />
+                  <Input
+                    label="Code postal"
+                    type="zipcode"
+                    name="zipCode"
+                    maxLength="5"
+                    placeholder="entrer votre code postal"
+                    isRequired={true}
+                    onChange={(e) => handleChange(e)}
+                    value={userForm.address.zipCode}
+                  />
+                  <Input
+                    label="Ville"
+                    type="city"
+                    name="city"
+                    placeholder="entrer votre ville"
+                    isRequired={true}
+                    onChange={(e) => handleChange(e)}
+                    value={userForm.address.city}
+                  />
+                  <Button
+                    type="submit"
+                    title="modifier"
+                    className="btn__secondary"
+                  />
+                </form>
+              </Modal>
+            )}
           </div>
 
           <div className={styles.wrapper}>
             <>
-              {isOpen1 && (
-                <Modal
-                  title="Modifier mon profil"
-                  closeModal={() => setIsOpen1(false)}
-                >
-                  <br />
-                  <form
-                    onSubmit={(e) => {
-                      submitForm(e);
-                    }}
-                  >
-                    <Input
-                      label="Prénom"
-                      type="text"
-                      name="firstName"
-                      value={userForm.firstName}
-                      isRequired={true}
-                      placeholder="entrer votre prénom"
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Input
-                      label="Nom"
-                      type="text"
-                      name="lastName"
-                      value={userForm.lastName}
-                      isRequired={true}
-                      placeholder="entrer votre nom"
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Input
-                      label="Email"
-                      type="text"
-                      name="email"
-                      value={userForm.email}
-                      isRequired={true}
-                      placeholder="entrer votre email"
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Input
-                      label="Numéro de portable"
-                      type="tel"
-                      name="phone"
-                      value={userForm.phone}
-                      isRequired={true}
-                      placeholder="entrer votre numéro de portable"
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Input
-                      label="Addresse"
-                      type="adress"
-                      name="street"
-                      placeholder="entrer votre rue"
-                      isRequired={true}
-                      onChange={(e) => handleChange(e)}
-                      value={userForm.address.street}
-                    />
-                    <Input
-                      label="Code postal"
-                      type="zipcode"
-                      name="zipCode"
-                      maxLength="5"
-                      placeholder="entrer votre code postal"
-                      isRequired={true}
-                      onChange={(e) => handleChange(e)}
-                      value={userForm.address.zipCode}
-                    />
-                    <Input
-                      label="Ville"
-                      type="city"
-                      name="city"
-                      placeholder="entrer votre ville"
-                      isRequired={true}
-                      onChange={(e) => handleChange(e)}
-                      value={userForm.address.city}
-                    />
-                    <Button
-                      type="submit"
-                      title="modifier"
-                      className="btn__secondary"
-                    />
-                  </form>
-                </Modal>
-              )}
               {isOpen2 && (
                 <Modal
                   title="Modifier mon profil"
@@ -352,7 +352,7 @@ const Index = () => {
 
               <div className={styles.formulaire}>
                 <div className={styles.profile_container}>
-                  <ProfileCard user={user} handleClick={handleClick1} />
+                  <UserInfo user={user} handleClick={handleClick1} />
 
                   <div className={styles.profile_card}>
                     {user && (
