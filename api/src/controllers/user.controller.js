@@ -60,6 +60,30 @@ exports.getMyFreelance = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getMyCompany = async (req, res, next) => {
+  try {
+    //find freelance and populate skills && activity
+    const me = await Company.findById(req.body.freelance_id).populate([
+      {
+        path: 'missions',
+        model: 'Mission',
+      },
+    ]);
+    if (!me) {
+      const error = new Error('Company not found');
+      error.status = 404;
+      throw error;
+    }
+    //return user
+    res.send({
+      company: me,
+      success: true,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 //update logged user (base on token)
 exports.updateMe = async (req, res, next) => {
   try {

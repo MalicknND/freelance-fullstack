@@ -14,6 +14,12 @@ router.post(
   verifyIsFreelance,
   userController.getMyFreelance
 );
+router.post(
+  '/my-company',
+  verifyToken,
+  verifyIsCompany,
+  userController.getMyCompany
+);
 router.post('/reset-password', verifyToken, userController.resetPassword);
 router.get(
   '/admin/user/:id',
