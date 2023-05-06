@@ -23,7 +23,7 @@ const index = () => {
       .then((data) => setData(data.freelances));
   }, []);
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className={styles.search}>
       <div className={styles.searchCard}>
@@ -54,7 +54,7 @@ const index = () => {
           <Link href="/freelances/id">
             <div className={styles.right_body}>
               {data.map((freelance) => (
-                <Card freelance={freelance} />
+                <Card key={freelance._id} freelance={freelance} />
               ))}
             </div>
           </Link>

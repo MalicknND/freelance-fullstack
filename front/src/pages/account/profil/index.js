@@ -6,12 +6,16 @@ import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import Footer from '@/components/partials/Footer';
 import Modal from '@/components/UI/Modal';
+import Loading from '@/components/UI/Loading';
+import Title from '@/components/UI/Title';
 import UserInfo from '@/components/UI/UserInfo';
 import Freelance from '@/components/UI/UserTypeCard/Freelance';
 
 import styles from './index.module.scss';
 
 const Index = () => {
+  const router = useRouter();
+
   const { isLogged, user, updateUser } = useContext(UserContext);
 
   const [token, setToken] = useState();
@@ -93,8 +97,8 @@ const Index = () => {
   useEffect(() => {
     if (freelance_id !== null) {
       fetchDataFreelance();
-      // fetchDataSkills();
-      // fetchDataActivities();
+      fetchDataSkills();
+      fetchDataActivities();
     }
   }, [freelance_id]);
 

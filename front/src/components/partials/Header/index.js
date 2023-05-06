@@ -53,14 +53,14 @@ const index = () => {
                 className="btn__primary"
                 handleClick={() => logout()}
               />
-              {user && user.isAdmin && (
+              {user && user.isAdmin ? (
                 <Button
                   type="submit"
                   title="Admin"
                   className="btn__primary"
                   handleClick={() => router.push('/admin')}
                 />
-              )}
+              ) : null}
             </>
           ) : (
             <>

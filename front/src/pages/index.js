@@ -24,7 +24,7 @@ export default function Home() {
       .then((data) => setData(data.freelances));
   }, []);
 
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <Featured />
@@ -46,7 +46,7 @@ export default function Home() {
           }}
         >
           {data.map((freelance) => (
-            <Card freelance={freelance} />
+            <Card key={freelance._id} freelance={freelance} />
           ))}
         </div>
       </div>

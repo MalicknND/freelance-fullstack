@@ -4,8 +4,10 @@ import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import Title from '@/components/UI/Title';
 import Image from '../../../../public/img/header.png';
+import { useRouter } from 'next/router';
 
 function index() {
+  const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -28,7 +30,12 @@ function index() {
                     <Input type="text" placeholder="Paris, France..." />
                   </div>
                 </div>
-                <Button type="submit" title="Trouver" className="btn__search" />
+                <Button
+                  type="submit"
+                  title="Trouver"
+                  className="btn__search"
+                  onClick={() => router.push('/account/profil')}
+                />
                 ou
                 <Button
                   type="submit"

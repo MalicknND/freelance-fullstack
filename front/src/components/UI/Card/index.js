@@ -19,7 +19,7 @@ const index = ({ freelance }) => {
           <p className={styles.freelancer_title}>{freelance.activity.name}</p>
         )}
 
-        <p clasNames={styles.freelancer_rate}>
+        <p className={styles.freelancer_rate}>
           Taux journalier : {freelance.rate}€/jour
         </p>
         <p className={styles.freelancer_location}>
