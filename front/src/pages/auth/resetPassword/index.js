@@ -7,8 +7,9 @@ import Notification from '@/components/UI/Notification';
 
 const index = () => {
   const [passwordForm, setPasswordForm] = useState({
-    password: '',
-    confirmPassword: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
   });
   const [token, setToken] = useState(null); // initialisé à null
 
@@ -42,6 +43,10 @@ const index = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (passwordForm.newPassword !== passwordForm.confirmNewPassword) {
+      alert('Les mots de passe ne correspondent pas');
+      return;
+    }
     fetchData();
   };
 
@@ -50,22 +55,31 @@ const index = () => {
       <Title title="Réinitialisation de mot de passe" Level="h1" />
       <form onSubmit={handleSubmit}>
         <Input
+          label="Ancien mot de passe"
+          type="password"
+          name="oldPassword"
+          placeholder="Entrez votre ancien mot de passe"
+          isRequired={true}
+          onChange={handleChange}
+          value={passwordForm.oldPassword}
+        />
+        <Input
           label="Nouveau mot de passe"
           type="password"
-          name="password"
+          name="newPassword"
           placeholder="Entrez votre nouveau mot de passe"
           isRequired={true}
           onChange={handleChange}
-          value={passwordForm.password}
+          value={passwordForm.newPassword}
         />
         <Input
           label="Confirmer le nouveau mot de passe"
           type="password"
-          name="confirmPassword"
+          name="confirmNewPassword"
           placeholder="Confirmez votre nouveau mot de passe"
           isRequired={true}
           onChange={handleChange}
-          value={passwordForm.confirmPassword}
+          value={passwordForm.confirmNewPassword}
         />
         <Button
           type="submit"

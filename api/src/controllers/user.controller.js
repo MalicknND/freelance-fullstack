@@ -3,6 +3,7 @@ const Company = require('../models/company.model');
 const Freelance = require('../models/freelance.model');
 const sendEmail = require('../utils/sendMail');
 const signJwt = require('../utils/signJwt');
+const bcrypt = require('bcrypt');
 
 //get user logged (base on token)
 exports.getMe = async (req, res, next) => {
@@ -203,14 +204,18 @@ exports.forgotPassword = async (req, res, next) => {
 exports.resetPassword = async (req, res, next) => {
   try {
     //find user
-    const user = await User.findOne({ email: req.userToken.body.email });
-    if (!user) {
+    const user = await User.findOne({
+      _id: req.userToken.body.id,
+    });
+
+    if (!bcrypt.compareSync(req.body.oldPassword, user.password)) {
       throw new Error('User not found');
     }
     //update password property with new one
-    user.password = req.body.password;
+    user.password = req.body.newPassword;
     //save in DB
     await user.save();
+
     //send success message
     res.send({
       message: 'password successfully updated',
