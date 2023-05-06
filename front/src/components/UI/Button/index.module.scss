@@ -36,6 +36,18 @@
       border: none;
     }
   }
+  &__profile {
+    border: 1px solid #013914;
+    width: 15%;
+    color: #013914;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    &:hover {
+      background: #013914;
+      border: 1px solid white;
+      color: white;
+    }
+  }
   &__tertiary {
     width: 25%;
     background: white;

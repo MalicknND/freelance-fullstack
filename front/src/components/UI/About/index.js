@@ -34,20 +34,6 @@ const Freelance = () => {
           </div>
           <div className={styles.column}>
             <img
-              src={Image2.src}
-              alt="illustration of people doing a high-five"
-            />
-            <div className={styles.column_content}>
-              <div>
-                <Title title="+400K freelances" Level="h2" />
-              </div>
-              <div>
-                <p>Aux multiples compétences</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.column}>
-            <img
               src={Image3.src}
               width="140"
               alt="illustration of people doing a high-five"
@@ -58,6 +44,20 @@ const Freelance = () => {
               </div>
               <div>
                 <p>Pensée et conçue pour collaborer</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.column}>
+            <img
+              src={Image2.src}
+              alt="illustration of people doing a high-five"
+            />
+            <div className={styles.column_content}>
+              <div>
+                <Title title="+400K freelances" Level="h2" />
+              </div>
+              <div>
+                <p>Aux multiples compétences</p>
               </div>
             </div>
           </div>

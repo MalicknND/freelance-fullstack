@@ -182,6 +182,12 @@ const Index = () => {
     <>
       {isLogged ? (
         <main className={styles.main}>
+          <Button
+            type="submit"
+            title="Modifier mot de passe"
+            className="btn__profile"
+            handleClick={() => router.push('/resetpassword')}
+          />
           <div className={styles.profile}>
             {user && (
               <>
