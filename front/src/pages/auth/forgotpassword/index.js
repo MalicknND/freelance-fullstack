@@ -7,7 +7,6 @@ import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button/';
 import Title from '@/components/UI/Title';
 import Loading from '@/components/UI/Loading';
-import styles from './index.module.scss';
 
 import Notification from '@/components/UI/Notification';
 const Index = () => {
@@ -80,7 +79,7 @@ const Index = () => {
   return (
     <>
       <Loading isLoad={loading} />
-      <Title title="Connexion" Level="h1" />
+      <Title title="Trouver le compte" Level="h1" />
       <form onSubmit={(e) => submitLogin(e)}>
         <Input
           label="Email"
@@ -91,25 +90,14 @@ const Index = () => {
           onChange={(e) => handleChange(e)}
           value={userForm.email}
         />
-        <Input
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="veuillez saisir votre mot de passe"
-          isRequired={true}
-          onChange={(e) => handleChange(e)}
-          value={userForm.password}
-        />
-        <Button type="submit" title="Se connecter" className="btn__secondary" />
+
+        <Button type="submit" title="Envoyer" className="btn__secondary" />
       </form>
       <br />
       {error && <Notification type="warning" message={error.message} />}
-      <div className={styles.text}>
+      <div>
         <p>
-          <Link href="/auth/forgotpassword">Mot de passe oublié ?</Link>
-        </p>
-        <p>
-          Pas de compte ? <Link href="/auth/accounts">Inscrivez-vous ?</Link>
+          <Link href="/auth/login">Se connecter</Link>
         </p>
       </div>
     </>
