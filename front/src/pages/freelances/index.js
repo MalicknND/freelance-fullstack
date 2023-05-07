@@ -9,7 +9,6 @@ import Link from 'next/link';
 
 const index = () => {
   const [data, setData] = React.useState([]);
-  // console.log(process.env.NEXT_PUBLIC_API_URL);
 
   React.useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/freelance/search`, {
@@ -23,7 +22,6 @@ const index = () => {
       .then((data) => setData(data.freelances));
   }, []);
 
-  // console.log(data);
   return (
     <div className={styles.search}>
       <div className={styles.searchCard}>
@@ -49,7 +47,7 @@ const index = () => {
       </div>
       <Title title="Les dernières offres" Level="h1" />
       <div className={styles.freelances}>
-        <div className={styles.left}>LEFT PART</div>
+        {/* <div className={styles.left}>LEFT PART</div> */}
         <div className={styles.right}>
           <Link href="/freelances/id">
             <div className={styles.right_body}>
