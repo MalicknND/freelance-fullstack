@@ -76,7 +76,7 @@ function index() {
             </div>
             <div>
               <div>
-                <p>Malt Open: solution de portage administratif</p>
+                <p>Freelancer Open: solution de portage administratif</p>
               </div>
             </div>
             <div>
@@ -108,12 +108,12 @@ function index() {
             </div>
             <div>
               <div>
-                <p>Programme Super Malter</p>
+                <p>Programme Super Freelancer</p>
               </div>
             </div>
             <div>
               <div>
-                <p>Malt Academy</p>
+                <p>Freelancer Academy</p>
               </div>
             </div>
             <div>
