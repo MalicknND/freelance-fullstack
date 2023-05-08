@@ -15,7 +15,9 @@ const index = () => {
       headers: {
         'Content-Type': 'Application/json',
       },
-
+      body: JSON.stringify({
+        searchString: '',
+      }),
       method: 'POST',
     })
       .then((response) => response.json())

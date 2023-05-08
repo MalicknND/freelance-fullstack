@@ -1,35 +1,21 @@
-// import { useState, useEffect, useContext } from 'react';
-// import useFetch from '@/hooks/useFetch';
-// import UserContext from '@/context/UserContext';
+import React from 'react';
+import Button from '@/components/UI/Button/';
+import { useRouter } from 'next/router';
 
-// const Index = () => {
-//   const [token, setToken] = useState(null);
-//   const { isLogged, user, updateUser } = useContext(UserContext);
+const index = () => {
+  const router = useRouter();
+  return (
+    <div>
+      <Button
+        type="submit"
+        title="users"
+        className="btn__secondary"
+        handleClick={() => router.push('/admin/users')}
+      />
+      <Button type="submit" title="Skills" className="btn__secondary" />
+      <Button type="submit" title="Metiers" className="btn__secondary" />
+    </div>
+  );
+};
 
-//   const { fetchData, data, error, loading } = useFetch({
-//     url: '/user/admin/users',
-//     method: 'GET',
-//     body: null,
-//     token: token,
-//   });
-
-//   useEffect(() => {
-//     setToken(localStorage.getItem('token'));
-//   }, []);
-
-//   useEffect(() => {
-//     if (token != null) {
-//       fetchData();
-//     }
-//   }, [token]);
-
-//   useEffect(() => {
-//     if (data.success == true) {
-//       console.log(data);
-//     }
-//   }, [data]);
-
-//   return <div>index</div>;
-// };
-
-// export default Index;
+export default index;
