@@ -24,7 +24,7 @@ const index = () => {
           type="submit"
           title="Metiers"
           className="btn__secondary"
-          handleClick={() => router.push('/admin/metiers')}
+          handleClick={() => router.push('/admin/activities')}
         />
       </div>
     </div>

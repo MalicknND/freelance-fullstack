@@ -9,7 +9,7 @@ const Index = () => {
   const [token, setToken] = useState(null);
   const { isLogged, user, updateUser } = useContext(UserContext);
   const { fetchData, data, error, loading } = useFetch({
-    url: '/skill',
+    url: '/activity',
     method: 'GET',
     body: null,
     token: token,
@@ -33,7 +33,7 @@ const Index = () => {
 
   return (
     <div>
-      <Title title="Tous les compétences" Level="h1" />
+      <Title title="Tous les métiers" Level="h1" />
       <table className={styles.wrapper}>
         <thead>
           <tr>
@@ -43,12 +43,11 @@ const Index = () => {
           </tr>
         </thead>
         <tbody>
-          {data.skills &&
-            data.skills.map((skills) => (
-              <tr key={skills._id}>
-                <td>{skills._id}</td>
-                <td>{skills.name}</td>
-
+          {data.activities &&
+            data.activities.map((activities) => (
+              <tr key={activities._id}>
+                <td>{activities._id}</td>
+                <td>{activities.name}</td>
                 <td>
                   <Button
                     type="submit"

@@ -36,6 +36,23 @@
       border: none;
     }
   }
+  &__update {
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: #013914;
+    color: white;
+    border: none;
+  }
+  &__delete {
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: red;
+    margin: 0;
+    color: white;
+    border: none;
+  }
   &__profile {
     border: 1px solid #013914;
     width: 15%;

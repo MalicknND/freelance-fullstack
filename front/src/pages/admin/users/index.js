@@ -3,6 +3,7 @@ import useFetch from '@/hooks/useFetch';
 import UserContext from '@/context/UserContext';
 import styles from './index.module.scss';
 import Title from '@/components/UI/Title';
+import Button from '@/components/UI/Button/';
 
 const Index = () => {
   const [token, setToken] = useState(null);
@@ -57,9 +58,11 @@ const Index = () => {
                 </td>
                 <td>{user.userType}</td>
                 <td>
-                  <button onClick={() => handleDeleteUser(user._id)}>
-                    Delete
-                  </button>
+                  <Button
+                    type="submit"
+                    title="Supprimer"
+                    className="btn__delete"
+                  />
                 </td>
               </tr>
             ))}
