@@ -8,7 +8,7 @@ const Index = () => {
   const [token, setToken] = useState(null);
   const { isLogged, user, updateUser } = useContext(UserContext);
   const { fetchData, data, error, loading } = useFetch({
-    url: '/user/admin/users',
+    url: '/skill',
     method: 'GET',
     body: null,
     token: token,
@@ -32,39 +32,35 @@ const Index = () => {
 
   return (
     <div>
-      <Title title="Tous les utilisateurs" Level="h1" />
-      {/* <table className={styles.wrapper}>
+      <Title title="Tous les compétences" Level="h1" />
+      <table className={styles.wrapper}>
         <thead>
           <tr>
-            <th>Prénom</th>
+            <th>ID</th>
             <th>Nom</th>
-            <th>Email</th>
-            <th>Adresse</th>
-            <th>UserType</th>
-            <th>Actions</th>
+            <th colSpan={2}>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {data.users &&
-            data.users.map((user) => (
-              <tr key={user._id}>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{user.email}</td>
+          {data.skills &&
+            data.skills.map((skills) => (
+              <tr key={skills._id}>
+                <td>{skills._id}</td>
+                <td>{skills.name}</td>
                 <td>
-                  {user.address.street} {user.address.zipCode}{' '}
-                  {user.address.city}
-                </td>
-                <td>{user.userType}</td>
-                <td>
-                  <button onClick={() => handleDeleteUser(user._id)}>
+                  <button onClick={() => handleDeleteUser(skills._id)}>
                     Delete
+                  </button>
+                </td>
+                <td>
+                  <button onClick={() => handleEditUser(skills)}>
+                    Modifier
                   </button>
                 </td>
               </tr>
             ))}
         </tbody>
-      </table> */}
+      </table>
     </div>
   );
 };
