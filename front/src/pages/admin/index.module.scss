@@ -1,0 +1,10 @@
+.parent_wrapper {
+  padding: 50px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+}

@@ -33,7 +33,7 @@ const Index = () => {
   return (
     <div>
       <Title title="Tous les utilisateurs" Level="h1" />
-      <table className={styles.wrapper}>
+      {/* <table className={styles.wrapper}>
         <thead>
           <tr>
             <th>Prénom</th>
@@ -64,7 +64,7 @@ const Index = () => {
               </tr>
             ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };
