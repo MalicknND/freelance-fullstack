@@ -18,7 +18,7 @@ const Index = () => {
 
   const { isLogged, user, updateUser } = useContext(UserContext);
 
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
   const [freelance_id, setFreelance_id] = useState(null);
 
   const [userForm, setUserForm] = useState();
@@ -86,16 +86,22 @@ const Index = () => {
   // all the useEffects
   useEffect(() => {
     setUserForm(user);
-    if (user.freelance !== undefined) {
-      setFreelance_id(user.freelance._id);
-      console.log(user, 'USERR IS HERE');
+    console.log(user, 'Test');
+    if (user.freelance != undefined) {
+      setToken(localStorage.getItem('token'));
+      console.log('test');
     }
-    const token = localStorage.getItem('token');
-    setToken(token);
   }, [user]);
 
   useEffect(() => {
-    if (freelance_id !== null) {
+    if (token != null) {
+      setFreelance_id(user.freelance._id);
+      console.log(user, 'USERR IS HERE');
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (freelance_id != null) {
       fetchDataFreelance();
       fetchDataSkills();
       fetchDataActivities();
@@ -103,18 +109,18 @@ const Index = () => {
   }, [freelance_id]);
 
   useEffect(() => {
-    if (freelance !== null) {
+    if (freelance != null) {
       console.log(freelance, 'FREELANCE IS HERE');
       setFreelanceForm(freelance.freelance);
     }
   }, [freelance]);
   useEffect(() => {
-    if (skills !== null) {
+    if (skills != null) {
       console.log(freelance, 'SKILLS ARE HERE');
     }
   }, [skills]);
   useEffect(() => {
-    if (activities !== null) {
+    if (activities != null) {
       console.log(activities, 'ACTIVITIES ARE HERE');
     }
   }, [activities]);

@@ -46,6 +46,7 @@ const Index = () => {
 
   useEffect(() => {
     fetchDataUser();
+
     if (user.success) {
       login({
         firstName: user.user.firstName,
@@ -53,6 +54,8 @@ const Index = () => {
         email: user.user.email,
         phone: user.user.phone,
         userType: user.user.userType,
+        freelance: user.user.freelance,
+        isAdmin: user.user.isAdmin,
         address: {
           city: user.user.address.city,
           zipCode: user.user.address.zipCode,
