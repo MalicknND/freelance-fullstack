@@ -32,3 +32,5 @@ d’ajouter/modifier/supprimer des métiers
 consulter tous les utilisateurs de l’application (entreprise et freelance)
 Supprimer un utilisateur
 consulter les missions et les propositions rattachées
+
+![alt text](../freelance-fullstack/front/public/img/accessibility.png)
