@@ -168,7 +168,9 @@ const index = () => {
                   <div className={styles.profile_info}>
                     <p className={styles.profile_info_label}>Métier :</p>
                     <p className={styles.profile_info_value}>
-                      {freelance.freelance.activity.name}
+                      {freelance.freelance.activity
+                        ? freelance.freelance.activity.name
+                        : ''}
                     </p>
                   </div>
                   <div className={styles.profile_info}>

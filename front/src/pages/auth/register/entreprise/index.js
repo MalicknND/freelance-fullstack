@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from './index.module.scss';
 import useFetch from '@/hooks/useFetch';
 import { useRouter } from 'next/router';
@@ -6,9 +6,11 @@ import Link from 'next/link';
 import Title from '@/components/UI/Title';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
+import UserContext from '@/context/UserContext';
 
 const Index = () => {
   const router = useRouter();
+  const { login, user } = useContext(UserContext);
   // cette variable permet de stocker le token de l'utilisateur
   const [token, setToken] = useState(null);
   const [userForm, setUserForm] = useState({
@@ -20,7 +22,7 @@ const Index = () => {
     userType: 'COMPANY',
     address: {
       city: '',
-      zipCode: null,
+      zipCode: '',
       street: '',
     },
   });
@@ -31,7 +33,7 @@ const Index = () => {
     siret: '',
     address: {
       city: '',
-      zipCode: 0,
+      zipCode: '',
       street: '',
     },
   });
@@ -104,6 +106,9 @@ const Index = () => {
         console.log(data);
         setToken(data.token);
         localStorage.setItem('token', data.token);
+
+        login(userForm);
+        router.push('/');
       }
     }
   }, [data]);
@@ -111,7 +116,7 @@ const Index = () => {
   // permet de verifier si le token est présent dans le localstorage et de faire la requête pour récupérer les données du company
   useEffect(() => {
     if (token != null) {
-      fetchDataFreelance();
+      fetchDataCompany();
     }
   }, [token]);
 
@@ -236,7 +241,7 @@ const Index = () => {
             placeholder="Code postal"
             required={true}
             onChange={(e) => handleChangeCompany(e)}
-            value={userForm.zipCode}
+            value={companyForm.address.zipCode}
           />
         </div>
         <div className={styles.username}>
@@ -247,16 +252,16 @@ const Index = () => {
             placeholder="Rue"
             required={true}
             onChange={(e) => handleChangeCompany(e)}
-            value={userForm.address.street}
+            value={companyForm.address.street}
           />
           <Input
             label=""
             type="text"
             name="city"
-            placeholder="Paris"
+            placeholder="Ville"
             required={true}
             onChange={(e) => handleChangeCompany(e)}
-            value={userForm.address.city}
+            value={companyForm.address.city}
           />
         </div>
         <Button type="submit" title="S'inscrire" className="btn__secondary" />

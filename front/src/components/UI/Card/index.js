@@ -13,7 +13,12 @@ const index = ({ freelance }) => {
       </div>
       <div className={styles.freelancer_card_body}>
         <h3 className={styles.freelancer_name}>
-          {freelance.user.firstName} {freelance.user.lastName}
+          {freelance &&
+          freelance.user &&
+          freelance.user.firstName &&
+          freelance.user.lastName
+            ? `${freelance.user.firstName} ${freelance.user.lastName}`
+            : null}
         </h3>
         {freelance.activity && (
           <p className={styles.freelancer_title}>{freelance.activity.name}</p>
@@ -23,8 +28,12 @@ const index = ({ freelance }) => {
           Taux journalier : {freelance.rate}€/jour
         </p>
         <p className={styles.freelancer_location}>
-          {freelance.user.address.street} {freelance.user.address.zipCode}{' '}
-          {freelance.user.address.city}
+          {freelance.user && freelance.user.address && (
+            <span className={styles.profile_info_value}>
+              {freelance.user.address.street} {freelance.user.address.zipCode}{' '}
+              {freelance.user.address.city}
+            </span>
+          )}
         </p>
         <div className={styles.freelancer_skills}>
           <span>Compétences :</span>

@@ -185,11 +185,13 @@ const Index = () => {
                       <h1>
                         {user.firstName} {user.lastName}
                       </h1>
-                      <p>{freelance.freelance.activity.name}</p>
-                      <span>
+                      {freelance.freelance.activity
+                        ? freelance.freelance.activity.name
+                        : ''}
+                      <h1>
                         {user.address.street} {user.address.zipCode}{' '}
                         {user.address.city}{' '}
-                      </span>
+                      </h1>
                     </div>
                     <div className={styles.rectangles}>
                       <div className={styles.rectangle}>

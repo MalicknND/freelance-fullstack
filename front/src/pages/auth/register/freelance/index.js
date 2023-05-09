@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from './index.module.scss';
 import useFetch from '@/hooks/useFetch';
 import { useRouter } from 'next/router';
@@ -6,10 +6,12 @@ import Link from 'next/link';
 import Title from '@/components/UI/Title';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
+import UserContext from '@/context/UserContext';
 
 const Index = () => {
   const router = useRouter();
   // cette variable permet de stocker le token de l'utilisateur
+  const { login, user } = useContext(UserContext);
   const [token, setToken] = useState(null);
   const [userForm, setUserForm] = useState({
     firstName: '',
@@ -20,7 +22,7 @@ const Index = () => {
     userType: 'FREELANCE',
     address: {
       city: '',
-      zipCode: null,
+      zipCode: '',
       street: '',
     },
   });
@@ -93,6 +95,9 @@ const Index = () => {
         setToken(data.token);
         localStorage.setItem('token', data.token);
       }
+      console.log(data);
+      login(userForm);
+      router.push('/');
     }
   }, [data]);
 
@@ -138,13 +143,13 @@ const Index = () => {
             value={userForm.phone}
           />
           <Input
-            label=" "
+            label=""
             type="number"
             name="zipCode"
             placeholder="Code postal"
             required={true}
             onChange={(e) => handleChange(e)}
-            value={userForm.zipCode}
+            value={userForm.address.zipCode}
           />
         </div>
         <div className={styles.username}>
