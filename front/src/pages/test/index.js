@@ -14,39 +14,42 @@ import Freelance from '@/components/UI/UserTypeCard/Freelance';
 import styles from './index.module.scss';
 
 const index = () => {
-  const { isLogged, user, updateUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [token, setToken] = useState(null);
-  const [company_id, setCompany_id] = useState(null);
+  const [freelance_id, setFreelance_id] = useState(null);
 
-  const [companyForm, setCompanyForm] = useState(null);
+  const [userForm, setUserForm] = useState();
+  const [freelanceForm, setFreelanceForm] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
   const {
-    data: company,
-    error: errorCompany,
-    loading: loadingCompany,
-    fetchData: fetchDataCompany,
+    data: freelance,
+    error: errorFreelance,
+    loading: loadingFreelance,
+    fetchData: fetchDataFreelance,
   } = useFetch({
-    url: '/user/my-company',
+    url: '/user/my-freelance',
     method: 'POST',
-    body: { company_id: company_id },
+    body: { freelance_id: freelance_id },
     token: token,
   });
   const {
-    data: companyUpdate,
-    error: errorUpdateCompany,
-    loading: loadingUpdateCompany,
-    fetchData: fetchCompanyUpdate,
+    data: freelanceUpdate,
+    error: errorUpdateFreelance,
+    loading: loadingUpdateFreelance,
+    fetchData: fetchFreelanceUpdate,
   } = useFetch({
-    url: '/user/company',
+    url: '/user/freelance',
     method: 'PUT',
-    body: companyForm,
+    body: freelanceForm,
     token: token,
   });
   useEffect(() => {
-    if (user.company != undefined) {
+    setUserForm(user);
+    console.log(user, 'Test');
+    if (user.freelance != undefined) {
       setToken(localStorage.getItem('token'));
       console.log('test');
     }
@@ -54,49 +57,40 @@ const index = () => {
 
   useEffect(() => {
     if (token != null) {
-      setCompany_id(user.company._id);
+      setFreelance_id(user.freelance._id);
       console.log(user, 'USER IS HERE');
     }
   }, [token]);
 
   useEffect(() => {
-    if (company_id != null) {
-      fetchDataCompany();
+    if (freelance_id != null) {
+      fetchDataFreelance();
     }
-  }, [company_id]);
+  }, [freelance_id]);
 
   useEffect(() => {
-    if (company != null) {
-      console.log(company, 'COMPANY IS HERE');
-      setCompanyForm(company.company);
+    if (freelance != null) {
+      console.log(freelance, 'Freelaance IS HERE');
+      setFreelanceForm(freelance.freelance);
     }
-  }, [company]);
+  }, [freelance]);
 
   useEffect(() => {
-    if (companyUpdate.success) {
-      fetchDataCompany();
+    if (freelanceUpdate.success) {
+      fetchDataFreelance();
       setIsOpen(false);
     }
-  }, [companyUpdate]);
+  }, [freelanceUpdate]);
 
-  const handleChangeCompany = (e) => {
-    setCompanyForm({ ...companyForm, [e.target.name]: e.target.value });
-    console.log(companyForm, 'COMPANY FORM');
-    if (e.target.name === 'zipCode') {
-      companyForm.address.zipCode = e.target.value;
-    }
-    if (e.target.name === 'city') {
-      companyForm.address.city = e.target.value;
-    }
-    if (e.target.name === 'street') {
-      companyForm.address.street = e.target.value;
-    }
+  const handleChangeFreelance = (e) => {
+    setFreelanceForm({ ...freelanceForm, [e.target.name]: e.target.value });
+    console.log(freelanceForm, 'FREELANCE FORM');
   };
 
-  const submitFormCompany = (e) => {
+  const submitFormFreelaance = (e) => {
     e.preventDefault();
-    fetchCompanyUpdate();
-    if (companyUpdate.success) {
+    fetchFreelanceUpdate();
+    if (freelanceUpdate.success) {
       setIsOpen(false);
     }
   };
@@ -105,140 +99,99 @@ const index = () => {
   };
 
   return (
-    <div>
-      <div className={styles.profile_card}>
-        {user && (
-          <>
-            <span>
-              <img
-                src="/img/edit.png"
-                alt=""
-                className={styles.profile_icon}
-                onClick={handleClick}
-              />
-            </span>
-            <div className={styles.profile_card_body}>
-              <Title title="Entreprise" Level="h2" />
-              {company.company != null && (
-                <>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Company name :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.name}
-                    </p>
-                  </div>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Status :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.status}
-                    </p>
-                  </div>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Numéro Siret :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.siret}
-                    </p>
-                  </div>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Rue :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.address.street}
-                    </p>
-                  </div>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Code postal :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.address.zipCode}
-                    </p>
-                  </div>
-                  <div className={styles.profile_info}>
-                    <p className={styles.profile_info_label}>Ville :</p>
-                    <p className={styles.profile_info_value}>
-                      {company.company.address.city}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </>
-        )}
-        {isOpen && (
-          <Modal
-            title="Modifier mon profil"
-            closeModal={() => setIsOpen(false)}
-          >
-            <br />
-            <form
-              onSubmit={(e) => {
-                submitFormCompany(e);
-              }}
+    <>
+      <div>
+        <div className={styles.profile_card}>
+          {user && (
+            <>
+              <span>
+                <img
+                  src="/img/edit.png"
+                  alt=""
+                  className={styles.profile_icon}
+                  onClick={handleClick}
+                />
+              </span>
+              <div className={styles.profile_card_body}>
+                <Title title="Freelance" Level="h2" />
+                {freelance.freelance != null && (
+                  <>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Taux Journalier :
+                      </p>
+                      <p className={styles.profile_info_value}>
+                        {freelance.freelance.rate}€/Jour
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>
+                        Année d'éxperience :
+                      </p>
+                      <p className={styles.profile_info_value}>
+                        {freelance.freelance.yearOfExperience} ans
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Métier :</p>
+                      <p className={styles.profile_info_value}>
+                        {freelance.freelance.activity.name}
+                      </p>
+                    </div>
+                    <div className={styles.profile_info}>
+                      <p className={styles.profile_info_label}>Compétences :</p>
+                      <ul className={styles.profile_info_ul}>
+                        {freelance.freelance.skills.map((skill, index) => (
+                          <li key={index}>{skill.name}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+          {isOpen && (
+            <Modal
+              title="Modifier mon profil"
+              closeModal={() => setIsOpen(false)}
             >
-              <Input
-                label="Nom de l'entreprise"
-                type="text"
-                name="name"
-                value={companyForm.name}
-                isRequired={true}
-                placeholder="Nom de l'entreprise"
-                onChange={(e) => handleChangeCompany(e)}
-              />
-              <Input
-                label="Status"
-                type="text"
-                name="status"
-                value={companyForm.status}
-                isRequired={true}
-                placeholder="année d'expérience"
-                onChange={(e) => handleChangeCompany(e)}
-              />
-              <Input
-                label="Numéro Siret"
-                type="number"
-                name="siret"
-                value={companyForm.siret}
-                isRequired={true}
-                placeholder="année d'expérience"
-                onChange={(e) => handleChangeCompany(e)}
-              />
-              <Input
-                label="Addresse"
-                type="adress"
-                name="street"
-                placeholder="entrer votre rue"
-                isRequired={true}
-                onChange={(e) => handleChangeCompany(e)}
-                value={companyForm.address.street}
-              />
-              <Input
-                label="Code postal"
-                type="zipcode"
-                name="zipCode"
-                maxLength="5"
-                placeholder="entrer votre code postal"
-                isRequired={true}
-                onChange={(e) => handleChangeCompany(e)}
-                value={companyForm.address.zipCode}
-              />
-              <Input
-                label="Ville"
-                type="city"
-                name="city"
-                placeholder="entrer votre ville"
-                isRequired={true}
-                onChange={(e) => handleChangeCompany(e)}
-                value={companyForm.address.city}
-              />
+              <br />
+              <form
+                onSubmit={(e) => {
+                  submitFormFreelaance(e);
+                }}
+              >
+                <Input
+                  label="Taux journalier"
+                  type="number"
+                  name="rate"
+                  value={freelanceForm.rate}
+                  isRequired={true}
+                  placeholder="taux journalier"
+                  onChange={(e) => handleChangeFreelance(e)}
+                />
+                <Input
+                  label="Année d'expérience"
+                  type="number"
+                  name="yearOfExperience"
+                  value={freelanceForm.yearOfExperience}
+                  isRequired={true}
+                  placeholder="année d'expérience"
+                  onChange={(e) => handleChangeFreelance(e)}
+                />
 
-              <Button
-                type="submit"
-                title="modifier"
-                className="btn__secondary"
-              />
-            </form>
-          </Modal>
-        )}
+                <Button
+                  type="submit"
+                  title="modifier"
+                  className="btn__secondary"
+                />
+              </form>
+            </Modal>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

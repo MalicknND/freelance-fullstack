@@ -4,6 +4,7 @@ import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button/';
 import Title from '@/components/UI/Title';
 import Notification from '@/components/UI/Notification';
+import styles from './index.module.scss';
 
 const index = () => {
   const [passwordForm, setPasswordForm] = useState({
@@ -53,45 +54,47 @@ const index = () => {
   return (
     <>
       <Title title="Réinitialisation de mot de passe" Level="h1" />
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Ancien mot de passe"
-          type="password"
-          name="oldPassword"
-          placeholder="Entrez votre ancien mot de passe"
-          isRequired={true}
-          onChange={handleChange}
-          value={passwordForm.oldPassword}
-        />
-        <Input
-          label="Nouveau mot de passe"
-          type="password"
-          name="newPassword"
-          placeholder="Entrez votre nouveau mot de passe"
-          isRequired={true}
-          onChange={handleChange}
-          value={passwordForm.newPassword}
-        />
-        <Input
-          label="Confirmer le nouveau mot de passe"
-          type="password"
-          name="confirmNewPassword"
-          placeholder="Confirmez votre nouveau mot de passe"
-          isRequired={true}
-          onChange={handleChange}
-          value={passwordForm.confirmNewPassword}
-        />
-        <Button
-          type="submit"
-          title="Réinitialiser"
-          className="btn__secondary"
-          disabled={loading}
-        />
-      </form>
-      {data && data.message && (
-        <Notification type="success" message={data.message} />
-      )}
-      {error && <Notification type="warning" message={error.message} />}
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="Ancien mot de passe"
+            type="password"
+            name="oldPassword"
+            placeholder="Entrez votre ancien mot de passe"
+            isRequired={true}
+            onChange={handleChange}
+            value={passwordForm.oldPassword}
+          />
+          <Input
+            label="Nouveau mot de passe"
+            type="password"
+            name="newPassword"
+            placeholder="Entrez votre nouveau mot de passe"
+            isRequired={true}
+            onChange={handleChange}
+            value={passwordForm.newPassword}
+          />
+          <Input
+            label="Confirmer le nouveau mot de passe"
+            type="password"
+            name="confirmNewPassword"
+            placeholder="Confirmez votre nouveau mot de passe"
+            isRequired={true}
+            onChange={handleChange}
+            value={passwordForm.confirmNewPassword}
+          />
+          <Button
+            type="submit"
+            title="Réinitialiser"
+            className="btn__secondary"
+            disabled={loading}
+          />
+        </form>
+        {data && data.message && (
+          <Notification type="success" message={data.message} />
+        )}
+        {error && <Notification type="warning" message={error.message} />}
+      </div>
     </>
   );
 };

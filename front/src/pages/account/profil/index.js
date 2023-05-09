@@ -21,14 +21,14 @@ const Index = () => {
 
   const [token, setToken] = useState(null);
   const [freelance_id, setFreelance_id] = useState(null);
+  const [company_id, setCompany_id] = useState(null);
 
   const [userForm, setUserForm] = useState();
   const [freelanceForm, setFreelanceForm] = useState(null);
-  const [skillsForm, setSkillsForm] = useState([]);
+  const [companyForm, setCompanyForm] = useState(null);
 
   //les states isOpen permettent de gérer l'ouverture et la fermeture des modals
   const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
 
   // requete pour modifier le profil
   const {
@@ -40,6 +40,18 @@ const Index = () => {
     url: '/user/my-freelance',
     method: 'POST',
     body: { freelance_id: freelance_id },
+    token: token,
+  });
+
+  const {
+    data: company,
+    error: errorCompany,
+    loading: loadingCompany,
+    fetchData: fetchDataCompany,
+  } = useFetch({
+    url: '/user/my-company',
+    method: 'POST',
+    body: { company_id: company_id },
     token: token,
   });
   const {
@@ -61,42 +73,28 @@ const Index = () => {
     token: token,
   });
 
-  const {
-    data: skills,
-    error: errorSkills,
-    loading: loadingSkills,
-    fetchData: fetchDataSkills,
-  } = useFetch({
-    url: '/skill',
-    method: 'GET',
-    body: null,
-    token: null,
-  });
-  const {
-    data: activities,
-    error: errorActivities,
-    loading: loadingActivities,
-    fetchData: fetchDataActivities,
-  } = useFetch({
-    url: '/activity',
-    method: 'GET',
-    body: null,
-    token: null,
-  });
-
   // all the useEffects
+  // ce code surveille le state user et le met à jour dans le state userForm et met le token dans le state token
   useEffect(() => {
     setUserForm(user);
-    console.log(user, 'Test');
+    // console.log(user, 'Test');
     if (user.freelance != undefined) {
       setToken(localStorage.getItem('token'));
       console.log('test');
+    }
+    if (user.company != undefined) {
+      setToken(localStorage.getItem('token'));
+      // console.log('test');
     }
   }, [user]);
 
   useEffect(() => {
     if (token != null) {
-      setFreelance_id(user.freelance._id);
+      if (user.userType === 'FREELANCE') {
+        setFreelance_id(user.freelance._id);
+      } else if (user.userType === 'COMAPNY') {
+        setCompany_id(user.company_id);
+      }
       console.log(user, 'USERR IS HERE');
     }
   }, [token]);
@@ -104,10 +102,11 @@ const Index = () => {
   useEffect(() => {
     if (freelance_id != null) {
       fetchDataFreelance();
-      fetchDataSkills();
-      fetchDataActivities();
     }
-  }, [freelance_id]);
+    if (company_id != null) {
+      fetchDataCompany();
+    }
+  }, [company_id, freelance_id]);
 
   useEffect(() => {
     if (freelance != null) {
@@ -115,16 +114,6 @@ const Index = () => {
       setFreelanceForm(freelance.freelance);
     }
   }, [freelance]);
-  useEffect(() => {
-    if (skills != null) {
-      console.log(freelance, 'SKILLS ARE HERE');
-    }
-  }, [skills]);
-  useEffect(() => {
-    if (activities != null) {
-      console.log(activities, 'ACTIVITIES ARE HERE');
-    }
-  }, [activities]);
 
   useEffect(() => {
     if (dataUpdate.success) {
@@ -132,12 +121,6 @@ const Index = () => {
       updateUser(dataUpdate.user);
     }
   }, [dataUpdate]);
-  useEffect(() => {
-    if (freelanceUpdate.success) {
-      fetchDataFreelance();
-      setIsOpen2(false);
-    }
-  }, [freelanceUpdate]);
 
   // cette fonction permet de mettre à jour le state userForm et de gérer les changements dans les inputs
   const handleChange = (e) => {
@@ -156,11 +139,6 @@ const Index = () => {
     }
   };
 
-  const handleChangeFreelance = (e) => {
-    setFreelanceForm({ ...freelanceForm, [e.target.name]: e.target.value });
-    console.log(freelanceForm, 'FREELANCE FORM');
-  };
-
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -169,20 +147,9 @@ const Index = () => {
       setIsOpen1(false);
     }
   };
-  const submitFormFreelance = (e) => {
-    e.preventDefault();
-    fetchFreelanceUpdate();
-    if (freelanceUpdate.success) {
-      setIsOpen2(false);
-    }
-  };
 
   const handleClick1 = () => {
     setIsOpen1(true);
-  };
-
-  const handleClick2 = () => {
-    setIsOpen2(true);
   };
 
   return (
@@ -324,55 +291,11 @@ const Index = () => {
           </div>
 
           <div className={styles.wrapper}>
-            {isOpen2 && (
-              <Modal
-                title="Modifier mon profil"
-                closeModal={() => setIsOpen2(false)}
-              >
-                <br />
-                <form
-                  onSubmit={(e) => {
-                    submitFormFreelance(e);
-                  }}
-                >
-                  <Input
-                    label="Taux journalier"
-                    type="number"
-                    name="rate"
-                    value={freelanceForm.rate}
-                    isRequired={true}
-                    placeholder="taux journalier"
-                    onChange={(e) => handleChangeFreelance(e)}
-                  />
-                  <Input
-                    label="Année d'expérience"
-                    type="number"
-                    name="yearOfExperience"
-                    value={freelanceForm.yearOfExperience}
-                    isRequired={true}
-                    placeholder="année d'expérience"
-                    onChange={(e) => handleChangeFreelance(e)}
-                  />
-
-                  <Button
-                    type="submit"
-                    title="modifier"
-                    className="btn__secondary"
-                  />
-                </form>
-              </Modal>
-            )}
             <>
               <div className={styles.formulaire}>
                 <div className={styles.profile_container}>
                   <UserInfo user={user} handleClick={handleClick1} />
-                  {user?.userType === 'FREELANCE' ? (
-                    <Freelance
-                      user={user}
-                      freelance={freelance}
-                      handleClick={handleClick2}
-                    />
-                  ) : null}
+                  {user?.userType === 'FREELANCE' ? <Freelance /> : null}
                   {user?.userType === 'COMPANY' ? <Company /> : null}
                 </div>
               </div>

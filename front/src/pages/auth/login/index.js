@@ -55,6 +55,7 @@ const Index = () => {
         phone: user.user.phone,
         userType: user.user.userType,
         freelance: user.user.freelance,
+        company: user.user.company,
         isAdmin: user.user.isAdmin,
         address: {
           city: user.user.address.city,
