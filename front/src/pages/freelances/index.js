@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 const index = () => {
   const [data, setData] = React.useState([]);
   const [name, setName] = React.useState('');
+
   const router = useRouter();
 
   React.useEffect(() => {
