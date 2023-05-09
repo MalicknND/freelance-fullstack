@@ -105,7 +105,7 @@ const index = () => {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.profile_card}>
         {user && (
           <>
@@ -238,7 +238,7 @@ const index = () => {
           </Modal>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
