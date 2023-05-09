@@ -42,7 +42,7 @@ const index = () => {
               <Input
                 type="text"
                 name="firstName"
-                placeholder="Développeur Web..."
+                placeholder="Développeur Web...."
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
