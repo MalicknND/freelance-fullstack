@@ -65,7 +65,7 @@ exports.getMyFreelance = async (req, res, next) => {
 exports.getMyCompany = async (req, res, next) => {
   try {
     //find freelance and populate skills && activity
-    const me = await Company.findById(req.body.freelance_id).populate([
+    const me = await Company.findById(req.body.company_id).populate([
       {
         path: 'missions',
         model: 'Mission',

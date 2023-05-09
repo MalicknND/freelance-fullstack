@@ -10,6 +10,7 @@ import Loading from '@/components/UI/Loading';
 import Title from '@/components/UI/Title';
 import UserInfo from '@/components/UI/UserInfo';
 import Freelance from '@/components/UI/UserTypeCard/Freelance';
+import Company from '@/components/UI/UserTypeCard/Company';
 
 import styles from './index.module.scss';
 
@@ -365,11 +366,14 @@ const Index = () => {
               <div className={styles.formulaire}>
                 <div className={styles.profile_container}>
                   <UserInfo user={user} handleClick={handleClick1} />
-                  <Freelance
-                    user={user}
-                    freelance={freelance}
-                    handleClick={handleClick2}
-                  />
+                  {user?.userType === 'FREELANCE' ? (
+                    <Freelance
+                      user={user}
+                      freelance={freelance}
+                      handleClick={handleClick2}
+                    />
+                  ) : null}
+                  {user?.userType === 'COMPANY' ? <Company /> : null}
                 </div>
               </div>
             </>
