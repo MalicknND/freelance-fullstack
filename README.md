@@ -33,4 +33,13 @@ consulter tous les utilisateurs de l’application (entreprise et freelance)
 Supprimer un utilisateur
 consulter les missions et les propositions rattachées
 
-![alt text](./front/public/img/bureau.jpg)
+![alt text](./front/public/img/login.png 'Login')
+![alt text](./front/public/img/freelancer.png)
+![alt text](./front/public/img/entreprise.png 'Entreprise')
+![alt text](./front/public/img/homepage.png 'Homepage')
+![alt text](./front/public/img/profilEntreprise.png 'Profil Entreprise')
+![alt text](./front/public/img/profilFreelance.png 'Profil Freelance')
+![alt text](./front/public/img/freelances.png 'Freelance')
+![alt text](./front/public/img/users.png 'Users')
+![alt text](./front/public/img/skills.png 'Skills')
+![alt text](./front/public/img/activities.png 'Activities')
